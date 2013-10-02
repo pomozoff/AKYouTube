@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.author       = { "Anton Pomozov" => "pomozoff@gmail.com" }
   s.platform     = :ios, '6.0'
   s.ios.deployment_target = '6.0'
-  s.source       = { :git => "https://github.com/pomozoff/AKYouTube.git", :commit => "a73818e676de93f2e29380146760fb97cf71efc0" }
+  s.source       = { :git => "https://github.com/pomozoff/AKYouTube.git", :tag => s.version.to_s }
   s.source_files  = 'Classes/*.{h,m}'
   s.public_header_files = 'Classes/*.h'
   s.framework  = 'UIKit'
