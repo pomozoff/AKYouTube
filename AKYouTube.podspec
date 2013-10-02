@@ -12,5 +12,6 @@ Pod::Spec.new do |s|
   s.public_header_files   = 'Classes/*.h'
   s.frameworks            = 'UIKit', 'Foundation'
   s.requires_arc          = true
-  s.dependency            = 'EasyMapping', '~> 0.4.7'
+
+  s.dependency 'EasyMapping', '~> 0.4.7'
 end
