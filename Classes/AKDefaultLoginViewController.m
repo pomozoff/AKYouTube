@@ -7,7 +7,6 @@
 //
 
 #import "AKDefaultLoginViewController.h"
-#import "FXBlurView.h"
 
 @interface AKDefaultLoginViewController ()
 
@@ -43,8 +42,6 @@
 #pragma mark - Lifecycle
 
 - (void)loadView {
-    CGRect applicationFrame = [[UIScreen mainScreen] applicationFrame];
-    self.view = [[FXBlurView alloc] initWithFrame:applicationFrame];
     self.view.backgroundColor = [UIColor blackColor];
 }
 - (void)viewDidLoad {

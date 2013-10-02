@@ -35,6 +35,5 @@
                clientSecret:(NSString *)clientSecret
                  scopesList:(NSString *)scopesList
                refreshToken:(NSString *)refreshToken;
-- (void)fetchChannelsWithRefreshToken:(NSString *)refreshToken;
 
 @end

@@ -9,7 +9,6 @@
 #import "AKConnector.h"
 #import "AKYouTubeConstants.h"
 #import "AKDefaultLoginViewController.h"
-#import "YTResponseObject.h"
 
 #import "NSData+AKRest.h"
 
@@ -198,114 +197,6 @@
             self.loginController.loginUrl = [self makeLoginURLRequest];
         }
     }
-}
-- (void)getUserInfoWithBlockCompletion:(void(^)(NSDictionary *))completionBlock {
-    if (self.accessToken) {
-        NSString *urlString = [NSString stringWithFormat:@"%@&access_token=%@",
-                               YTGoogleUserInfoURL, self.accessToken];
-        NSHTTPURLResponse *response;
-        NSError *error = nil;
-        
-        NSDictionary *jsonAnswer = [self jsonAnswerForRequestMethod:REST_METHOD_GET
-                                                      withUrlString:urlString
-                                                     withParameters:nil
-                                                         responseIs:&response
-                                                            errorIs:&error];
-        
-        if (!error) {
-            if ( YTHttpResponseStatusOK == response.statusCode ) {
-                completionBlock(jsonAnswer);
-            }
-        }
-    }
-}
-- (void)fetchPlaylists {
-    NSArray *playlists;
-    
-    if (self.accessToken) {
-        NSString *urlString = [NSString stringWithFormat:@"%@?part=snippet&mine=true&access_token=%@",
-                               YTAPIListPlaylistsURL, self.accessToken];
-        NSHTTPURLResponse *response;
-        NSError *error = nil;
-        
-        NSDictionary *jsonAnswer = [self jsonAnswerForRequestMethod:REST_METHOD_GET
-                                                      withUrlString:urlString
-                                                     withParameters:nil
-                                                         responseIs:&response
-                                                            errorIs:&error];
-        if ( !error ) {
-            if ( YTHttpResponseStatusOK == response.statusCode ) {
-                YTResponseObject *responseObject = [EKMapper objectFromExternalRepresentation:jsonAnswer
-                                                                                  withMapping:[YTMappingProvider responsePlaylistsMapping]];
-                playlists = responseObject.items;
-            }
-        }
-    }
-}
-- (NSArray *)makePlaylistsFromChannels:(NSArray *)rawChannels {
-    NSMutableArray *channels = [[NSMutableArray alloc] init];
-    
-    if (rawChannels.count > 0) {
-        YTPlaylistObject *playlist;
-        YTChannelsObject *channelsList = rawChannels.lastObject;
-        
-        playlist = [[YTPlaylistObject alloc] init];
-        playlist.title = @"Likes";
-        playlist.uid = playlist.title;
-        playlist.channelId = channelsList.likesId;
-        [channels addObject:playlist];
-        
-        playlist = [[YTPlaylistObject alloc] init];
-        playlist.title = @"Favorites";
-        playlist.uid = playlist.title;
-        playlist.channelId = channelsList.favoritesId;
-        [channels addObject:playlist];
-        
-        playlist = [[YTPlaylistObject alloc] init];
-        playlist.title = @"Uploads";
-        playlist.uid = playlist.title;
-        playlist.channelId = channelsList.uploadsId;
-        [channels addObject:playlist];
-        
-        playlist = [[YTPlaylistObject alloc] init];
-        playlist.title = @"Watch history";
-        playlist.uid = playlist.title;
-        playlist.channelId = channelsList.watchHistoryId;
-        [channels addObject:playlist];
-        
-        playlist = [[YTPlaylistObject alloc] init];
-        playlist.title = @"Watch later";
-        playlist.uid = playlist.title;
-        playlist.channelId = channelsList.watchLaterId;
-        [channels addObject:playlist];
-    }
-    
-    return channels;
-}
-- (void)fetchChannelsWithCompletionBlock:(FetchPlaylistsCompletionBlock)completionBlock {
-    NSArray *channels;
-    
-    if (self.accessToken) {
-        NSString *urlString = [NSString stringWithFormat:@"%@?part=contentDetails&mine=true&access_token=%@",
-                               YTAPIListChannelsURL, self.accessToken];
-        NSHTTPURLResponse *response;
-        NSError *error = nil;
-        
-        NSDictionary *jsonAnswer = [self jsonAnswerForRequestMethod:REST_METHOD_GET
-                                                      withUrlString:urlString
-                                                     withParameters:nil
-                                                         responseIs:&response
-                                                            errorIs:&error];
-        if ( !error ) {
-            if ( YTHttpResponseStatusOK == response.statusCode ) {
-                YTResponseObject *responseObject = [EKMapper objectFromExternalRepresentation:jsonAnswer
-                                                                                  withMapping:[YTMappingProvider responseChannelsMapping]];
-                channels = [self makePlaylistsFromChannels:responseObject.items];
-            }
-        }
-    }
-    
-    completionBlock(channels, @"Channels");
 }
 
 #pragma mark - Properties
