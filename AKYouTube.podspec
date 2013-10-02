@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AKYouTube"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "Simple REST client to YouTube v3 API"
   s.homepage     = "https://github.com/pomozoff/AKYouTube"
   s.license      = { :type => 'MIT', :file => 'FILE_LICENSE' }
