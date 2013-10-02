@@ -30,7 +30,6 @@
 + (AKConnector *)sharedInstance;
 
 - (void)useCustomLoginViewController:(UIViewController *)loginViewController;
-
 - (void)connectWithClientId:(NSString *)clientId
                clientSecret:(NSString *)clientSecret
                  scopesList:(NSString *)scopesList
