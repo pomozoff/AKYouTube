@@ -229,7 +229,7 @@
 		26C4B31B17FC429300913AF1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = AY;
+				CLASSPREFIX = AK;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Akademon Ltd.";
 				TargetAttributes = {
