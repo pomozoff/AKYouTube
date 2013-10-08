@@ -1,5 +1,5 @@
 //
-//  AYAppDelegate.h
+//  AKAppDelegate.h
 //  AKYouTubeExample
 //
 //  Created by Anton Pomozov on 02.10.13.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AYAppDelegate : UIResponder <UIApplicationDelegate>
+@interface AKAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

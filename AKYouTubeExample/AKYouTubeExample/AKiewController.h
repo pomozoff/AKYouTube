@@ -1,5 +1,5 @@
 //
-//  AYViewController.h
+//  AKViewController.h
 //  AKYouTubeExample
 //
 //  Created by Anton Pomozov on 02.10.13.
@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AKConnector.h"
+#import "YTConnector.h"
 
-@interface AYViewController : UIViewController <AKConnectorDelegate>
+@interface AKiewController : UIViewController <YTConnectorDelegate>
 
 @end

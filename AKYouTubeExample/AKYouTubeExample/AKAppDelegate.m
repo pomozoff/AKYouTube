@@ -1,14 +1,14 @@
 //
-//  AYAppDelegate.m
+//  AKAppDelegate.m
 //  AKYouTubeExample
 //
 //  Created by Anton Pomozov on 02.10.13.
 //  Copyright (c) 2013 Akademon Ltd. All rights reserved.
 //
 
-#import "AYAppDelegate.h"
+#import "AKAppDelegate.h"
 
-@implementation AYAppDelegate
+@implementation AKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.

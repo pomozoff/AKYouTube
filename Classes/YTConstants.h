@@ -1,5 +1,5 @@
 //
-//  AKYouTubeConstants.h
+//  YTConstants.h
 //  AKYouTube
 //
 //  Created by Anton Pomozov on 10.09.13.
@@ -21,11 +21,13 @@ static NSString *const YTMandatoryScope = @"youtube";
 static NSString *const YTAPIListChannelsURL  = @"https://www.googleapis.com/youtube/v3/channels";
 static NSString *const YTAPIListPlaylistsURL = @"https://www.googleapis.com/youtube/v3/playlists";
 
+static NSString *const YTDefaultsRefreshToken = @"ru.akademon.YTConnector.Defaults.RefreshToken";
+
 static NSInteger const YTHttpResponseStatusOK = 200;
 static NSUInteger const YTTimeoutSeconds = 30;
 
-static NSUInteger const AKWebViewHorizontalMargin = 30;
-static NSUInteger const AKWebViewVerticalMargin   = 44;
+static NSUInteger const YTWebViewHorizontalMargin = 30;
+static NSUInteger const YTWebViewVerticalMargin   = 44;
 
 typedef enum {
     REST_METHOD_POST,
