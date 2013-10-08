@@ -26,6 +26,7 @@
 		26C4B36917FC501300913AF1 /* YTLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C4B36117FC501300913AF1 /* YTLoginViewController.m */; };
 		26C4B36A17FC501300913AF1 /* NSData+AKRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C4B36617FC501300913AF1 /* NSData+AKRest.m */; };
 		26F3EDE5180403F30079C1E6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F3EDE4180403F30079C1E6 /* QuartzCore.framework */; };
+		26F3EDEB18040A990079C1E6 /* AKTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F3EDEA18040A990079C1E6 /* AKTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,9 @@
 		26C4B36517FC501300913AF1 /* NSData+AKRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AKRest.h"; sourceTree = "<group>"; };
 		26C4B36617FC501300913AF1 /* NSData+AKRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AKRest.m"; sourceTree = "<group>"; };
 		26F3EDE4180403F30079C1E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		26F3EDE918040A990079C1E6 /* AKTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKTableViewController.h; sourceTree = "<group>"; };
+		26F3EDEA18040A990079C1E6 /* AKTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKTableViewController.m; sourceTree = "<group>"; };
+		26F3EDEC18040B3A0079C1E6 /* AKConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKConstants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,8 +136,11 @@
 				26C4B33817FC429300913AF1 /* Main.storyboard */,
 				26C4B33517FC429300913AF1 /* AKAppDelegate.h */,
 				26C4B33617FC429300913AF1 /* AKAppDelegate.m */,
+				26F3EDEC18040B3A0079C1E6 /* AKConstants.h */,
 				26C4B33B17FC429300913AF1 /* AKiewController.h */,
 				26C4B33C17FC429300913AF1 /* AKiewController.m */,
+				26F3EDE918040A990079C1E6 /* AKTableViewController.h */,
+				26F3EDEA18040A990079C1E6 /* AKTableViewController.m */,
 				26C4B33E17FC429300913AF1 /* Images.xcassets */,
 				26C4B32D17FC429300913AF1 /* Supporting Files */,
 			);
@@ -289,6 +296,7 @@
 				26C4B33717FC429300913AF1 /* AKAppDelegate.m in Sources */,
 				26C4B33D17FC429300913AF1 /* AKiewController.m in Sources */,
 				26C4B33317FC429300913AF1 /* main.m in Sources */,
+				26F3EDEB18040A990079C1E6 /* AKTableViewController.m in Sources */,
 				26C4B36717FC501300913AF1 /* YTConnector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
