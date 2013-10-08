@@ -35,7 +35,6 @@
 #define VIEWS_CORNER_RADIUS 5.0f
 
 - (void)closeButtonPressed:(id)sender {
-    NSLog(@"Close!");
     [self.presentingViewController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
 }
 - (CGRect)makeRectForView {
