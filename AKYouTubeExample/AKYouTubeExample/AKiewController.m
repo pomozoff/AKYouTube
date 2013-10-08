@@ -15,8 +15,6 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
 @property (weak, nonatomic) IBOutlet UILabel *status;
 
 @property (nonatomic, assign) BOOL isConnected;
-@property (nonatomic, readonly) NSString *clientId;
-@property (nonatomic, readonly) NSString *clientSecret;
 
 @end
 
@@ -28,7 +26,7 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
     self.status.enabled = NO;
     
     YTConnector.sharedInstance.delegate = self;
-    [YTConnector.sharedInstance connectWithClientId:self.clientId andClientSecret:self.clientSecret];
+    [YTConnector.sharedInstance connectWithClientId:AKClientId andClientSecret:AKClientSecret];
 }
 
 #pragma mark - Properties
@@ -36,12 +34,6 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
 - (void)setIsConnected:(BOOL)isConnected {
     _isConnected = isConnected;
     self.status.text = isConnected == YES ? @"Connected" : @"Disconected";
-}
-- (NSString *)clientId {
-    return @"PASTE-YOUR-CLIENT-ID";
-}
-- (NSString *)clientSecret {
-    return @"PASTE-YOUR-CLIENT-SECRET";
 }
 
 #pragma mark - Connector Delegate
