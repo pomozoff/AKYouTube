@@ -15,7 +15,11 @@
 
 @implementation AKTableViewController
 
+#pragma mark - Connector Delegate
 
+- (void)presentLoginViewControler:(UIViewController<YTLoginViewControllerInterface> *)loginViewController {
+    loginViewController.shouldPresentCloseButton = YES;
+    [self presentViewController:loginViewController animated:YES completion:NULL];
 }
 - (void)connectionEstablished {
     [self.tableView reloadData];
