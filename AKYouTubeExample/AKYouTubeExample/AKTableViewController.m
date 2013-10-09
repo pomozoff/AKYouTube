@@ -15,27 +15,16 @@
 
 @implementation AKTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+
 }
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (void)connectionEstablished {
+    [self.tableView reloadData];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)connectionDidFailWithError:(NSError *)error {
+    NSLog(@"%@ - Connection failed: %@", NSStringFromClass(self.class), error);
+}
+- (void)appDidFailAuthorize {
+    [YTConnector.sharedInstance authorizeAppWithScopesList:nil inLoginViewController:nil];
 }
 
 #pragma mark - Table view data source
@@ -59,6 +48,15 @@
     // Configure the cell...
     
     return cell;
+}
+
+#pragma mark - Lifecycle
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 @end

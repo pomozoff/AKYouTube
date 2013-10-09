@@ -39,6 +39,16 @@
 - (void)networkActivityIndicatorIsVisible:(BOOL)isVisible {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:isVisible];
 }
+- (void)scaleLoadedPageToWidth {
+    CGSize contentSize = self.loginController.webView.scrollView.contentSize;
+    CGSize viewSize = self.loginController.webView.bounds.size;
+    
+    float rw = viewSize.width / contentSize.width;
+    
+    self.loginController.webView.scrollView.minimumZoomScale = rw;
+    self.loginController.webView.scrollView.maximumZoomScale = rw;
+    self.loginController.webView.scrollView.zoomScale = rw;
+}
 - (void)setupLoginController:(UIViewController<YTLoginViewControllerInterface> *)loginController {
     loginController.webView.delegate = self;
     [loginController.webView loadRequest:[self makeLoginURLRequest]];
@@ -263,6 +273,7 @@
     [self networkActivityIndicatorIsVisible:NO];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self scaleLoadedPageToWidth];
     [self networkActivityIndicatorIsVisible:NO];
 }
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
