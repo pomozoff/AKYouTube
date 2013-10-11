@@ -35,7 +35,7 @@
 #pragma mark - Private methods
 
 - (void)closeButtonPressed:(id)sender {
-    [self.presentingViewController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 - (CGRect)makeRectForView {
     CGRect appFrame = UIScreen.mainScreen.applicationFrame;
