@@ -25,6 +25,7 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
 
 - (IBAction)pressedConnect:(UIButton *)sender {
     self.status.enabled = NO;
+    self.status.text = @"Connecting ...";
     
     YTConnector.sharedInstance.delegate = self;
     [YTConnector.sharedInstance connectWithClientId:AKClientId andClientSecret:AKClientSecret];
@@ -45,11 +46,14 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
 }
 - (void)connectionEstablished {
     self.isConnected = YES;
+    self.status.text = @"Connected";
 }
 - (void)connectionDidFailWithError:(NSError *)error {
+    self.status.text = @"Connection error";
     NSLog(@"%@ - Connection failed: %@", NSStringFromClass(self.class), error);
 }
 - (void)appDidFailAuthorize {
+    self.status.text = @"Authorizing ...";
     [YTConnector.sharedInstance authorizeAppWithScopesList:nil inLoginViewController:nil];
 }
 
