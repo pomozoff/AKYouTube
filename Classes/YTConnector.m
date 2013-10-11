@@ -40,14 +40,22 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:isVisible];
 }
 - (void)scaleLoadedPageToWidth {
-    CGSize contentSize = self.loginController.webView.scrollView.contentSize;
-    CGSize viewSize = self.loginController.webView.bounds.size;
+    // Fix Google's storm in the minds
+    // <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
     
-    float rw = viewSize.width / contentSize.width;
+    NSString *makeScalableJS = @"var all_metas = document.getElementsByTagName('meta');\
+    if (all_metas){\
+        var k;\
+        for (k = 0; k < all_metas.length; k++) {\
+            var meta_tag = all_metas[k];\
+            var viewport = meta_tag.getAttribute('name');\
+            if (viewport && viewport == 'viewport') {\
+                meta_tag.setAttribute('content','width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=1;');\
+            }\
+        }\
+    }";
     
-    self.loginController.webView.scrollView.minimumZoomScale = rw;
-    self.loginController.webView.scrollView.maximumZoomScale = rw;
-    self.loginController.webView.scrollView.zoomScale = rw;
+    [self.loginController.webView stringByEvaluatingJavaScriptFromString:makeScalableJS];
 }
 - (NSURLRequest *)makeLoginURLRequest {
     NSString *stringUrl = [NSString stringWithFormat:@"%@?" \
