@@ -247,8 +247,6 @@
     return _loginController;
 }
 - (void)setLoginController:(UIViewController<YTLoginViewControllerInterface> *)loginController {
-    [_loginController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    
     _loginController = loginController;
     [self setupLoginController:_loginController];
 }
