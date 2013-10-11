@@ -133,5 +133,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+- (void)dealloc {
+    [self removeSubviewsFromSuperviews];
+
+    self.webView.delegate = nil;
+    [self.webView stopLoading];
+}
 
 @end
