@@ -14,7 +14,6 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
 @interface AKViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *status;
-
 @property (nonatomic, assign) BOOL isConnected;
 
 @end
@@ -30,8 +29,6 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
     YTConnector.sharedInstance.delegate = self;
     [YTConnector.sharedInstance connectWithClientId:AKClientId andClientSecret:AKClientSecret];
 }
-
-#pragma mark - Properties
 
 #pragma mark - Connector Delegate
 
