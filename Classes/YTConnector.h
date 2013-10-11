@@ -13,6 +13,9 @@
 @protocol YTLoginViewControllerInterface <NSObject>
 
 @property (nonatomic, strong, readonly) UIWebView *webView;
+
+@optional
+
 @property (nonatomic, assign) BOOL shouldPresentCloseButton;
 @property (nonatomic, strong) UIImage *closeButtonImageName;
 
