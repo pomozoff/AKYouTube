@@ -72,6 +72,21 @@
         [self.view addSubview:closeButtonView];
     }
 }
+- (void)removeSubviewsFromSuperviews {
+    [self.backView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
+- (void)presentViews {
+    [self removeSubviewsFromSuperviews];
+    
+    self.webView.frame = [self makeRectForWebView];
+    [self.view addSubview:self.backView];
+    [self.backView addSubview:self.webView];
+    
+    if (self.shouldPresentCloseButton) {
+        [self addCloseButton];
+    }
+}
 
 #pragma mark - Properties
 
@@ -108,15 +123,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-    self.webView.frame = [self makeRectForWebView];
 
-    [self.view addSubview:self.backView];
-    [self.backView addSubview:self.webView];
-    
-    if (self.shouldPresentCloseButton) {
-        [self addCloseButton];
-    }
+    [self presentViews];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
