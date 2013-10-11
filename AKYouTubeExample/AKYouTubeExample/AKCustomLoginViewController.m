@@ -24,6 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [YTConnector.sharedInstance authorizeAppWithScopesList:nil
+                                     inLoginViewController:(UIViewController<YTLoginViewControllerInterface> *)self];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
