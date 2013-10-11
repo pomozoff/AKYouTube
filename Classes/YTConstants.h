@@ -13,6 +13,7 @@ static NSString *const YTGrantTypeRefreshToken = @"refresh_token";
 
 static NSString *const YTGoogleOAuthURL = @"https://accounts.google.com/o/oauth2/auth";
 static NSString *const YTGoogleTokenURL = @"https://accounts.google.com/o/oauth2/token";
+static NSString *const YTDefaultScope   = @"https://www.googleapis.com/auth/youtube.readonly";
 static NSString *const YTRedirectURI    = @"http://localhost/oauth2callback";
 
 static NSString *const YTScopesPrefix = @"https://www.googleapis.com/auth/";

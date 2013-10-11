@@ -261,7 +261,7 @@
 }
 - (NSString *)scopesList {
     if (!_scopesList) {
-        _scopesList = @"https://www.googleapis.com/auth/youtube.readonly";
+        _scopesList = YTDefaultScope;
     }
     
     return _scopesList;
