@@ -19,9 +19,6 @@
 
 #pragma mark - Connector Delegate
 
-- (void)presentLoginViewControler:(UIViewController<YTLoginViewControllerInterface> *)loginViewController {
-    loginViewController.shouldPresentCloseButton = YES;
-    [self presentViewController:loginViewController animated:YES completion:NULL];
 }
 - (void)connectionEstablished {
     [self.tableView reloadData];
@@ -31,8 +28,9 @@
     NSLog(@"%@ - Connection failed: %@", NSStringFromClass(self.class), error);
 }
 - (void)appDidFailAuthorize {
-    [YTConnector.sharedInstance authorizeAppWithScopesList:nil inLoginViewController:nil];
     NSLog(@"App did fail authorize, calling login view controller ...");
+    
+    [self performSegueWithIdentifier:AKYoutubeSegue sender:self];
 }
 
 #pragma mark - Table view data source
