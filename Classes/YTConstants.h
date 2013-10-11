@@ -16,9 +16,6 @@ static NSString *const YTGoogleTokenURL = @"https://accounts.google.com/o/oauth2
 static NSString *const YTDefaultScope   = @"https://www.googleapis.com/auth/youtube.readonly";
 static NSString *const YTRedirectURI    = @"http://localhost/oauth2callback";
 
-static NSString *const YTScopesPrefix = @"https://www.googleapis.com/auth/";
-static NSString *const YTMandatoryScope = @"youtube";
-
 static NSString *const YTAPIListChannelsURL  = @"https://www.googleapis.com/youtube/v3/channels";
 static NSString *const YTAPIListPlaylistsURL = @"https://www.googleapis.com/youtube/v3/playlists";
 
