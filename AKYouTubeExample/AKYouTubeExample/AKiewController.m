@@ -51,6 +51,12 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
     self.status.text = @"Authorizing ...";
     [YTConnector.sharedInstance authorizeAppWithScopesList:nil inLoginViewController:nil];
 }
+- (void)userRejectedApp {
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.isConnected = NO;
+        self.status.text = @"Rejected";
+    }];
+}
 
 #pragma mark - Lifecycle
 
