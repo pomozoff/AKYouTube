@@ -23,10 +23,12 @@
 
 @protocol YTConnectorDelegate <NSObject>
 
-- (void)presentLoginViewControler:(UIViewController<YTLoginViewControllerInterface> *)loginViewController;
+@optional
+
 - (void)connectionEstablished;
 - (void)connectionDidFailWithError:(NSError *)error;
 - (void)appDidFailAuthorize;
+- (void)presentLoginViewControler:(UIViewController<YTLoginViewControllerInterface> *)loginViewController;
 - (void)userRejectedApp;
 
 @end

@@ -209,22 +209,31 @@
             [self refreshAccessTokenWithCompletion:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (error) {
-                        [self.delegate connectionDidFailWithError:error];
+                        if ([self.delegate respondsToSelector:@selector(connectionDidFailWithError:)]) {
+                            [self.delegate connectionDidFailWithError:error];
+                        }
                     } else {
-                        [self.delegate connectionEstablished];
+                        if ([self.delegate respondsToSelector:@selector(connectionEstablished)]) {
+                            [self.delegate connectionEstablished];
+                        }
                     }
                 });
             }];
         });
     } else {
-        [self.delegate appDidFailAuthorize];
+        if ([self.delegate respondsToSelector:@selector(appDidFailAuthorize)]) {
+            [self.delegate appDidFailAuthorize];
+        }
     }
 }
 - (void)authorizeAppWithScopesList:(NSString *)scopesList
              inLoginViewController:(UIViewController<YTLoginViewControllerInterface> *)loginViewController {
     self.scopesList = scopesList;
     self.loginController = loginViewController;
-    [self.delegate presentLoginViewControler:self.loginController];
+    
+    if ([self.delegate respondsToSelector:@selector(presentLoginViewControler:)]) {
+        [self.delegate presentLoginViewControler:self.loginController];
+    }
 }
 
 #pragma mark - Properties
@@ -290,7 +299,7 @@
         NSString *authCode = [self distinguishAuthCodeFromQuery:request.URL.query];
         if (authCode) {
             [self exchangeAuthCodeForAccessAndRefreshTokens:authCode];
-        } else {
+        } else if ([self.delegate respondsToSelector:@selector(userRejectedApp)]) {
             [self.delegate userRejectedApp];
         }
     }
