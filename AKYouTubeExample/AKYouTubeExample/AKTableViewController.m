@@ -12,13 +12,21 @@
 @interface AKTableViewController ()
 
 @property (nonatomic, strong) NSArray *playlists;
+@property (nonatomic, assign) BOOL isConnected;
 
 @end
 
 @implementation AKTableViewController
 
-#pragma mark - Connector Delegate
+#pragma mark - Private methods
 
+- (void)refreshTable {
+    if (self.isConnected) {
+        // TODO: fetch playlists
+    } else {
+        [YTConnector.sharedInstance connectWithClientId:AKClientId andClientSecret:AKClientSecret];
+        [self.refreshControl endRefreshing];
+    }
 }
 
 #pragma mark - Actions
@@ -30,8 +38,10 @@
 #pragma mark - Connector Delegate
 
 - (void)connectionEstablished {
-    [self.tableView reloadData];
     NSLog(@"Connection established");
+    
+    self.isConnected = YES;
+    [self refreshTable];
 }
 - (void)connectionDidFailWithError:(NSError *)error {
     NSLog(@"%@ - Connection failed: %@", NSStringFromClass(self.class), error);
@@ -66,6 +76,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isConnected = NO;
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refreshControl;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
