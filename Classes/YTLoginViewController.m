@@ -25,14 +25,14 @@
 @synthesize shouldPresentCloseButton = _shouldPresentCloseButton;
 @synthesize closeButtonImageName = _closeButtonImageName;
 
-#pragma mark - Private methods
-
 #define CLOSE_BUTTON_SIZE 15.0f
 #define MARGIN_BACK_VIEW_X 15.0f
 #define MARGIN_BACK_VIEW_TOP 30.0f
 #define MARGIN_BACK_VIEW_BOTTOM 25.0f
 #define SHIFT_WEBVIEW 2.0f
 #define VIEWS_CORNER_RADIUS 5.0f
+
+#pragma mark - Private methods
 
 - (void)closeButtonPressed:(id)sender {
     [self.presentingViewController.presentedViewController dismissViewControllerAnimated:YES completion:nil];

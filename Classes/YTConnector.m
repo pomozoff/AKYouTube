@@ -49,10 +49,6 @@
     self.loginController.webView.scrollView.maximumZoomScale = rw;
     self.loginController.webView.scrollView.zoomScale = rw;
 }
-- (void)setupLoginController:(UIViewController<YTLoginViewControllerInterface> *)loginController {
-    loginController.webView.delegate = self;
-    [loginController.webView loadRequest:[self makeLoginURLRequest]];
-}
 - (NSURLRequest *)makeLoginURLRequest {
     NSString *stringUrl = [NSString stringWithFormat:@"%@?" \
                            "client_id=%@&" \
@@ -65,6 +61,10 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     return request;
+}
+- (void)setupLoginController:(UIViewController<YTLoginViewControllerInterface> *)loginController {
+    loginController.webView.delegate = self;
+    [loginController.webView loadRequest:[self makeLoginURLRequest]];
 }
 - (NSString *)distinguishAuthCodeFromQuery:(NSString *)query {
     NSString *authCode = nil;
@@ -106,7 +106,7 @@
         default:
             break;
     }
-    
+
     NSData *data = [NSData dataUseMethod:methodString
                            withStringUrl:urlString
                           withParameters:parameters
@@ -120,7 +120,7 @@
         //        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         //        NSLog(@"Response is:\n%@", jsonString);
     }
-    
+
     return jsonAnswer;
 }
 - (void)exchangeAuthCodeForAccessAndRefreshTokens:(NSString *)authCode {
