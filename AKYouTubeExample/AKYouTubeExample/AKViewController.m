@@ -33,10 +33,14 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
 #pragma mark - Connector Delegate
 
 - (void)presentLoginViewControler:(UIViewController<YTLoginViewControllerInterface> *)loginViewController {
+    NSLog(@"Presenting default login view controller ...");
+    
     loginViewController.shouldPresentCloseButton = YES;
     [self presentViewController:loginViewController animated:YES completion:NULL];
 }
 - (void)connectionEstablished {
+    NSLog(@"Connection established");
+    
     self.isConnected = YES;
     self.status.text = @"Connected";
 }
@@ -45,6 +49,8 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
     NSLog(@"%@ - Connection failed: %@", NSStringFromClass(self.class), error);
 }
 - (void)appDidFailAuthorize {
+    NSLog(@"App did fail authorize, calling default login view controller ...");
+    
     self.status.text = @"Authorizing ...";
     [YTConnector.sharedInstance authorizeAppWithScopesList:nil inLoginViewController:nil];
 }
@@ -52,6 +58,8 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
     [self dismissViewControllerAnimated:YES completion:^{
         self.isConnected = NO;
         self.status.text = @"Rejected";
+        
+        NSLog(@"User rejected app");
     }];
 }
 

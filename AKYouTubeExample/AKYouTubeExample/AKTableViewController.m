@@ -25,12 +25,14 @@
 }
 - (void)connectionEstablished {
     [self.tableView reloadData];
+    NSLog(@"Connection established");
 }
 - (void)connectionDidFailWithError:(NSError *)error {
     NSLog(@"%@ - Connection failed: %@", NSStringFromClass(self.class), error);
 }
 - (void)appDidFailAuthorize {
     [YTConnector.sharedInstance authorizeAppWithScopesList:nil inLoginViewController:nil];
+    NSLog(@"App did fail authorize, calling login view controller ...");
 }
 
 #pragma mark - Table view data source
