@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) NSArray *playlists;
 @property (nonatomic, assign) BOOL isConnected;
+@property (nonatomic, assign) BOOL isFirstAppear;
 
 @end
 
@@ -74,8 +75,18 @@
 
 #pragma mark - Lifecycle
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (self.isFirstAppear) {
+        [self refreshTable];
+    }
+
+    self.isFirstAppear = NO;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isFirstAppear = YES;
     self.isConnected = NO;
     
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
