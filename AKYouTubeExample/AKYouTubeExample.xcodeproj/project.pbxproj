@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2682D1951802D40400E2CDAB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2682D1941802D40400E2CDAB /* Media.xcassets */; };
+		26AD77F61808330500968F9C /* AKCustomLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AD77F51808330500968F9C /* AKCustomLoginViewController.m */; };
 		26C4B32717FC429300913AF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C4B32617FC429300913AF1 /* Foundation.framework */; };
 		26C4B32917FC429300913AF1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C4B32817FC429300913AF1 /* CoreGraphics.framework */; };
 		26C4B32B17FC429300913AF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C4B32A17FC429300913AF1 /* UIKit.framework */; };
@@ -41,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		2682D1941802D40400E2CDAB /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		26AD77F41808330500968F9C /* AKCustomLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCustomLoginViewController.h; sourceTree = "<group>"; };
+		26AD77F51808330500968F9C /* AKCustomLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCustomLoginViewController.m; sourceTree = "<group>"; };
 		26C4B32317FC429300913AF1 /* AKYouTubeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKYouTubeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C4B32617FC429300913AF1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		26C4B32817FC429300913AF1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -141,6 +144,8 @@
 				26C4B33C17FC429300913AF1 /* AKViewController.m */,
 				26F3EDE918040A990079C1E6 /* AKTableViewController.h */,
 				26F3EDEA18040A990079C1E6 /* AKTableViewController.m */,
+				26AD77F41808330500968F9C /* AKCustomLoginViewController.h */,
+				26AD77F51808330500968F9C /* AKCustomLoginViewController.m */,
 				26C4B33E17FC429300913AF1 /* Images.xcassets */,
 				26C4B32D17FC429300913AF1 /* Supporting Files */,
 			);
@@ -298,6 +303,7 @@
 				26C4B33317FC429300913AF1 /* main.m in Sources */,
 				26F3EDEB18040A990079C1E6 /* AKTableViewController.m in Sources */,
 				26C4B36717FC501300913AF1 /* YTConnector.m in Sources */,
+				26AD77F61808330500968F9C /* AKCustomLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

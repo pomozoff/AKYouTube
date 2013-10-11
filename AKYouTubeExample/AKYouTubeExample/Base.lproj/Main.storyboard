@@ -52,31 +52,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-        </scene>
-        <!--Table View Controller - Root View Controller-->
-        <scene sceneID="Z7f-Fd-tgU">
-            <objects>
-                <tableViewController id="1Zv-bH-yJb" customClass="AKTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="pPO-J1-wpk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="GUB-0k-G3X">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GUB-0k-G3X" id="aBT-Pz-c6D">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="89C-ba-Kbg"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="i16-b5-kt2" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1290" y="167"/>
+            <point key="canvasLocation" x="-22" y="-227"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hJa-Bh-5B4">
@@ -86,12 +62,79 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="1Zv-bH-yJb" kind="relationship" relationship="rootViewController" id="ll6-se-J8x"/>
+                        <segue destination="dLh-M7-moQ" kind="relationship" relationship="rootViewController" id="bAv-Mi-2Th"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="apw-21-IRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="756" y="167"/>
+            <point key="canvasLocation" x="522" y="-227"/>
+        </scene>
+        <!--Custom Login View Controller-->
+        <scene sceneID="WkG-mM-UFV">
+            <objects>
+                <viewController id="ujf-je-Frk" customClass="AKCustomLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rqj-ke-FjZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="gsw-lM-bmR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SQc-zl-p6X">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tjG-fO-hLa">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xLR-Og-jjY"/>
+                    <connections>
+                        <outlet property="webView" destination="tjG-fO-hLa" id="9Uq-ci-a4H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vnt-Ud-ZT7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1503" y="-227"/>
+        </scene>
+        <!--Table View Controller - Playlists-->
+        <scene sceneID="bUA-6B-69e">
+            <objects>
+                <tableViewController id="dLh-M7-moQ" customClass="AKTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uGM-Rm-1Yr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Psc-eW-HcF">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Psc-eW-HcF" id="FYd-Nd-upk">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dLh-M7-moQ" id="zhA-N6-zWr"/>
+                            <outlet property="delegate" destination="dLh-M7-moQ" id="REP-LW-rue"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Playlists" id="9lh-8r-Hsn">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="RNN-yJ-pQ1">
+                            <connections>
+                                <action selector="cancelPressed:" destination="dLh-M7-moQ" id="0QZ-PK-tby"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="ujf-je-Frk" kind="push" identifier="YouTube Login Segue" id="sr6-MK-EUM"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ofM-24-oIy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1019" y="-227"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
