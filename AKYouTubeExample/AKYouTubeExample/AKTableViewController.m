@@ -11,7 +11,7 @@
 
 @interface AKTableViewController ()
 
-@property (nonatomic, strong) NSArray *playlist;
+@property (nonatomic, strong) NSArray *playlists;
 
 @end
 
