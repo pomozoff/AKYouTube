@@ -52,6 +52,14 @@
     
     [self performSegueWithIdentifier:AKYoutubeSegue sender:self];
 }
+- (void)userRejectedApp {
+    [self.navigationController popViewControllerAnimated:YES];
+
+    self.playlists = @[];
+    [self.tableView reloadData];
+    
+    NSLog(@"User rejected app");
+}
 
 #pragma mark - Table view data source
 
