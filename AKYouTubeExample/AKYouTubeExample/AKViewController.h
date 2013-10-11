@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "YTConnector.h"
 
-@interface AKiewController : UIViewController <YTConnectorDelegate>
+@interface AKViewController : UIViewController <YTConnectorDelegate>
 
 @end

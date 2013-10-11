@@ -15,7 +15,7 @@
 		26C4B33317FC429300913AF1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C4B33217FC429300913AF1 /* main.m */; };
 		26C4B33717FC429300913AF1 /* AKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C4B33617FC429300913AF1 /* AKAppDelegate.m */; };
 		26C4B33A17FC429300913AF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26C4B33817FC429300913AF1 /* Main.storyboard */; };
-		26C4B33D17FC429300913AF1 /* AKiewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C4B33C17FC429300913AF1 /* AKiewController.m */; };
+		26C4B33D17FC429300913AF1 /* AKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26C4B33C17FC429300913AF1 /* AKViewController.m */; };
 		26C4B33F17FC429300913AF1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26C4B33E17FC429300913AF1 /* Images.xcassets */; };
 		26C4B34617FC429300913AF1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C4B34517FC429300913AF1 /* XCTest.framework */; };
 		26C4B34717FC429300913AF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C4B32617FC429300913AF1 /* Foundation.framework */; };
@@ -52,8 +52,8 @@
 		26C4B33517FC429300913AF1 /* AKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKAppDelegate.h; sourceTree = "<group>"; };
 		26C4B33617FC429300913AF1 /* AKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKAppDelegate.m; sourceTree = "<group>"; };
 		26C4B33917FC429300913AF1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		26C4B33B17FC429300913AF1 /* AKiewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKiewController.h; sourceTree = "<group>"; };
-		26C4B33C17FC429300913AF1 /* AKiewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKiewController.m; sourceTree = "<group>"; };
+		26C4B33B17FC429300913AF1 /* AKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKViewController.h; sourceTree = "<group>"; };
+		26C4B33C17FC429300913AF1 /* AKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AKViewController.m; sourceTree = "<group>"; };
 		26C4B33E17FC429300913AF1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		26C4B34417FC429300913AF1 /* AKYouTubeExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AKYouTubeExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C4B34517FC429300913AF1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -137,8 +137,8 @@
 				26C4B33517FC429300913AF1 /* AKAppDelegate.h */,
 				26C4B33617FC429300913AF1 /* AKAppDelegate.m */,
 				26F3EDEC18040B3A0079C1E6 /* AKConstants.h */,
-				26C4B33B17FC429300913AF1 /* AKiewController.h */,
-				26C4B33C17FC429300913AF1 /* AKiewController.m */,
+				26C4B33B17FC429300913AF1 /* AKViewController.h */,
+				26C4B33C17FC429300913AF1 /* AKViewController.m */,
 				26F3EDE918040A990079C1E6 /* AKTableViewController.h */,
 				26F3EDEA18040A990079C1E6 /* AKTableViewController.m */,
 				26C4B33E17FC429300913AF1 /* Images.xcassets */,
@@ -294,7 +294,7 @@
 				26C4B36A17FC501300913AF1 /* NSData+AKRest.m in Sources */,
 				26C4B36917FC501300913AF1 /* YTLoginViewController.m in Sources */,
 				26C4B33717FC429300913AF1 /* AKAppDelegate.m in Sources */,
-				26C4B33D17FC429300913AF1 /* AKiewController.m in Sources */,
+				26C4B33D17FC429300913AF1 /* AKViewController.m in Sources */,
 				26C4B33317FC429300913AF1 /* main.m in Sources */,
 				26F3EDEB18040A990079C1E6 /* AKTableViewController.m in Sources */,
 				26C4B36717FC501300913AF1 /* YTConnector.m in Sources */,

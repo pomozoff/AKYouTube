@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Akademon Ltd. All rights reserved.
 //
 
-#import "AKiewController.h"
+#import "AKViewController.h"
 #import "AKConstants.h"
 
 static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.Defaults.RefreshToken";
 
-@interface AKiewController ()
+@interface AKViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *status;
 
@@ -19,7 +19,7 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
 
 @end
 
-@implementation AKiewController
+@implementation AKViewController
 
 #pragma mark - Actions
 
