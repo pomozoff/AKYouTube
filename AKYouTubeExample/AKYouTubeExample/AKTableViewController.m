@@ -86,6 +86,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    YTConnector.sharedInstance.delegate = self;
+
     self.isFirstAppear = YES;
     self.isConnected = NO;
     
