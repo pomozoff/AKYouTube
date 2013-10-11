@@ -33,11 +33,6 @@ static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.
 
 #pragma mark - Properties
 
-- (void)setIsConnected:(BOOL)isConnected {
-    _isConnected = isConnected;
-    self.status.text = isConnected == YES ? @"Connected" : @"Disconected";
-}
-
 #pragma mark - Connector Delegate
 
 - (void)presentLoginViewControler:(UIViewController<YTLoginViewControllerInterface> *)loginViewController {
