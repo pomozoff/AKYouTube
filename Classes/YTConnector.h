@@ -24,6 +24,7 @@
 - (void)connectionEstablished;
 - (void)connectionDidFailWithError:(NSError *)error;
 - (void)appDidFailAuthorize;
+- (void)userRejectedApp;
 
 @end
 

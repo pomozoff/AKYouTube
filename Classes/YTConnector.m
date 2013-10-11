@@ -288,7 +288,11 @@
     BOOL isRedirectUriFound = [request.URL.absoluteString hasPrefix:YTRedirectURI];
     if (isRedirectUriFound) {
         NSString *authCode = [self distinguishAuthCodeFromQuery:request.URL.query];
-        [self exchangeAuthCodeForAccessAndRefreshTokens:authCode];
+        if (authCode) {
+            [self exchangeAuthCodeForAccessAndRefreshTokens:authCode];
+        } else {
+            [self.delegate userRejectedApp];
+        }
     }
     
     [self networkActivityIndicatorIsVisible:!isRedirectUriFound];
