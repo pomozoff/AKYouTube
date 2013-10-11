@@ -20,6 +20,15 @@
 #pragma mark - Connector Delegate
 
 }
+
+#pragma mark - Actions
+
+- (IBAction)cancelPressed:(UIBarButtonItem *)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - Connector Delegate
+
 - (void)connectionEstablished {
     [self.tableView reloadData];
     NSLog(@"Connection established");
