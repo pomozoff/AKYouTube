@@ -8,3 +8,5 @@
 
 static NSString *const AKClientId     = @"PASTE-YOUR-CLIENT-ID";
 static NSString *const AKClientSecret = @"PASTE-YOUR-CLIENT-SECRET";
+
+static NSString *const AKYoutubeSegue = @"YouTube Login Segue";
