@@ -10,8 +10,6 @@
 #import "YTCommon.h"
 #import "YTLoginViewController.h"
 
-#import "NSData+AKRest.h"
-
 @interface YTConnector() <UIWebViewDelegate>
 
 @property (nonatomic, copy) NSString *clientId;
@@ -97,40 +95,6 @@
     return isExpired;
 }
 
-- (NSDictionary *)jsonAnswerForRequestMethod:(RestMethod)method
-                               withUrlString:(NSString *)urlString
-                              withParameters:(NSDictionary *)parameters
-                                  responseIs:(NSHTTPURLResponse **)response
-                                     errorIs:(NSError **)error {
-    NSString *methodString;
-    switch (method) {
-        case REST_METHOD_GET:
-            methodString = @"GET";
-            break;
-        case REST_METHOD_POST:
-            methodString = @"POST";
-            break;
-            
-        default:
-            break;
-    }
-
-    NSData *data = [NSData dataUseMethod:methodString
-                           withStringUrl:urlString
-                          withParameters:parameters
-                            httpResponse:response
-                                   error:error];
-    
-    NSDictionary *jsonAnswer;
-    if ( !(*error) ) {
-        jsonAnswer = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:error];
-        
-        //        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        //        NSLog(@"Response is:\n%@", jsonString);
-    }
-
-    return jsonAnswer;
-}
 - (void)exchangeAuthCodeForAccessAndRefreshTokens:(NSString *)authCode {
     NSDictionary *queryData = @{
                                 @"code"          : authCode,
@@ -143,11 +107,11 @@
 	NSHTTPURLResponse *response;
     NSError *error = nil;
     
-    NSDictionary *jsonAnswer = [self jsonAnswerForRequestMethod:REST_METHOD_POST
-                                                  withUrlString:YTGoogleTokenURL
-                                                 withParameters:queryData
-                                                     responseIs:&response
-                                                        errorIs:&error];
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_POST
+                                                      withUrlString:YTGoogleTokenURL
+                                                     withParameters:queryData
+                                                         responseIs:&response
+                                                            errorIs:&error];
     
     if (!error) {
         if ( YTHttpResponseStatusOK == response.statusCode ) {
@@ -170,11 +134,11 @@
         NSHTTPURLResponse *response;
         NSError *error = nil;
         
-        NSDictionary *jsonAnswer = [self jsonAnswerForRequestMethod:REST_METHOD_POST
-                                                      withUrlString:YTGoogleTokenURL
-                                                     withParameters:queryData
-                                                         responseIs:&response
-                                                            errorIs:&error];
+        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_POST
+                                                          withUrlString:YTGoogleTokenURL
+                                                         withParameters:queryData
+                                                             responseIs:&response
+                                                                errorIs:&error];
         
         if (!error) {
             if ( YTHttpResponseStatusOK == response.statusCode ) {
