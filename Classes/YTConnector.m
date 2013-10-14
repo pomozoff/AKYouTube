@@ -95,7 +95,7 @@
     return isExpired;
 }
 
-- (void)exchangeAuthCodeForAccessAndRefreshTokens:(NSString *)authCode {
+- (void)exchangeAuthCodeForAccessAndRefreshTokens:(NSString *)authCode withCompletion:(void (^)(NSError *))completion {
     NSDictionary *queryData = @{
                                 @"code"          : authCode,
                                 @"client_id"     : self.clientId,
@@ -121,6 +121,8 @@
             self.accessToken  = jsonAnswer[@"access_token"];
         }
     }
+
+    completion(error);
 }
 - (void)refreshAccessTokenWithCompletion:(void (^)(NSError *))completion {
     if (self.refreshToken) {
@@ -260,7 +262,7 @@
     if (isRedirectUriFound) {
         NSString *authCode = [self distinguishAuthCodeFromQuery:request.URL.query];
         if (authCode) {
-            [self exchangeAuthCodeForAccessAndRefreshTokens:authCode];
+            dispatch_queue_t connectQueue = dispatch_queue_create("YouTube exchange auth code queue", NULL);
         } else if ([self.delegate respondsToSelector:@selector(userRejectedApp)]) {
             [self.delegate userRejectedApp];
         }
