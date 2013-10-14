@@ -189,17 +189,8 @@ void(^RequestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         dispatch_queue_t connectQueue = dispatch_queue_create("YouTube refresh access token queue", NULL);
         dispatch_async(connectQueue, ^{
             [self refreshAccessTokenWithCompletion:^(NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (error) {
-                        if ([self.delegate respondsToSelector:@selector(connectionDidFailWithError:)]) {
-                            [self.delegate connectionDidFailWithError:error];
-                        }
-                    } else {
-                        if ([self.delegate respondsToSelector:@selector(connectionEstablished)]) {
-                            [self.delegate connectionEstablished];
-                        }
-                    }
-                });
+                __weak YTConnector *selfWeak = self;
+                RequestCompletionBlock(selfWeak, error);
             }];
         });
     } else {
