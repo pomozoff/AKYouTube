@@ -270,6 +270,12 @@ void(^RequestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         NSString *authCode = [self distinguishAuthCodeFromQuery:request.URL.query];
         if (authCode) {
             dispatch_queue_t connectQueue = dispatch_queue_create("YouTube exchange auth code queue", NULL);
+            dispatch_async(connectQueue, ^{
+                [self exchangeAuthCodeForAccessAndRefreshTokens:authCode withCompletion:^(NSError *error) {
+                    __weak YTConnector *selfWeak = self;
+                    RequestCompletionBlock(selfWeak, error);
+                }];
+            });
         } else if ([self.delegate respondsToSelector:@selector(userRejectedApp)]) {
             [self.delegate userRejectedApp];
         }
