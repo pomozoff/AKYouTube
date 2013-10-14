@@ -37,6 +37,7 @@
 @interface YTConnector : NSObject
 
 @property (nonatomic, weak) id<YTConnectorDelegate> delegate;
+@property (nonatomic, copy, readonly) NSString *accessToken;
 
 + (YTConnector *)sharedInstance;
 - (void)connectWithClientId:(NSString *)clientId andClientSecret:(NSString *)clientSecret;
