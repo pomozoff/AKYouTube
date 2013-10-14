@@ -27,6 +27,22 @@
 
 @implementation YTConnector
 
+#pragma mark - block
+
+void(^RequestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTConnector *selfWeak, NSError *error) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (error) {
+            if ([selfWeak.delegate respondsToSelector:@selector(connectionDidFailWithError:)]) {
+                [selfWeak.delegate connectionDidFailWithError:error];
+            }
+        } else {
+            if ([selfWeak.delegate respondsToSelector:@selector(connectionEstablished)]) {
+                [selfWeak.delegate connectionEstablished];
+            }
+        }
+    });
+};
+
 #pragma mark - Synthesize
 
 @synthesize loginController = _loginController;
