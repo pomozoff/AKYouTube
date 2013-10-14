@@ -9,8 +9,6 @@
 #import "AKViewController.h"
 #import "AKConstants.h"
 
-static NSString *const AKDefaultsRefreshToken = @"local.domain.AKYouTubeExample.Defaults.RefreshToken";
-
 @interface AKViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *status;
