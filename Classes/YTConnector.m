@@ -170,7 +170,7 @@
     self.clientSecret = clientSecret;
     
     if (self.refreshToken) {
-        dispatch_queue_t connectQueue = dispatch_queue_create("YouTube connect queue", NULL);
+        dispatch_queue_t connectQueue = dispatch_queue_create("YouTube refresh access token queue", NULL);
         dispatch_async(connectQueue, ^{
             [self refreshAccessTokenWithCompletion:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
