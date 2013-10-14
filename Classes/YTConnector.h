@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Akademon Ltd. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import UIKit;
 
 @class YTConnector;
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Akademon Ltd. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 #import "AKAppDelegate.h"
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Akademon Ltd. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 #define TIMEOUT_INTERVAL 30.0f
 

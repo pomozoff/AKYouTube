@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Akademon Ltd. All rights reserved.
 //
 
-#import <QuartzCore/QuartzCore.h>
+@import QuartzCore;
 
 #import "YTLoginViewController.h"
 #import "YTConstants.h"
