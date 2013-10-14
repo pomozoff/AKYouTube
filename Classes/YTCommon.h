@@ -1,12 +1,12 @@
 //
-//  YTConstants.h
-//  AKYouTube
+//  YTCommon.h
+//  AKYouTubeExample
 //
-//  Created by Anton Pomozov on 10.09.13.
+//  Created by Anton Pomozov on 14.10.13.
 //  Copyright (c) 2013 Akademon Ltd. All rights reserved.
 //
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 static NSString *const YTGrantTypeAuthCode     = @"authorization_code";
 static NSString *const YTGrantTypeRefreshToken = @"refresh_token";
@@ -23,6 +23,7 @@ static NSString *const YTDefaultsRefreshToken = @"ru.akademon.YTConnector.Defaul
 
 static NSInteger const YTHttpResponseStatusOK = 200;
 static NSUInteger const YTTimeoutSeconds = 30;
+static NSInteger const YTMaxItemsFetch = 50;
 
 static NSUInteger const YTWebViewHorizontalMargin = 30;
 static NSUInteger const YTWebViewVerticalMargin   = 44;
@@ -31,3 +32,14 @@ typedef enum {
     REST_METHOD_POST,
     REST_METHOD_GET
 } RestMethod;
+
+@interface YTCommon : NSObject
+
++ (NSString *)makeOptionsListFromOptions:(NSDictionary *)options;
++ (NSDictionary *)jsonAnswerForRequestMethod:(RestMethod)method
+                               withUrlString:(NSString *)urlString
+                              withParameters:(NSDictionary *)parameters
+                                  responseIs:(NSHTTPURLResponse **)response
+                                     errorIs:(NSError **)error;
+
+@end

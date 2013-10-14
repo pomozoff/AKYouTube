@@ -9,7 +9,6 @@
 @import QuartzCore;
 
 #import "YTLoginViewController.h"
-#import "YTConstants.h"
 
 @interface YTLoginViewController ()
 

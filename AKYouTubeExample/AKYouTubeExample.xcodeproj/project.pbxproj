@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2682D1951802D40400E2CDAB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2682D1941802D40400E2CDAB /* Media.xcassets */; };
 		26AD77F61808330500968F9C /* AKCustomLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AD77F51808330500968F9C /* AKCustomLoginViewController.m */; };
+		26AD77FC180BF2CB00968F9C /* YTCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 26AD77FB180BF2CB00968F9C /* YTCommon.m */; };
 		26C4B32717FC429300913AF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C4B32617FC429300913AF1 /* Foundation.framework */; };
 		26C4B32917FC429300913AF1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C4B32817FC429300913AF1 /* CoreGraphics.framework */; };
 		26C4B32B17FC429300913AF1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26C4B32A17FC429300913AF1 /* UIKit.framework */; };
@@ -44,6 +45,8 @@
 		2682D1941802D40400E2CDAB /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		26AD77F41808330500968F9C /* AKCustomLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKCustomLoginViewController.h; sourceTree = "<group>"; };
 		26AD77F51808330500968F9C /* AKCustomLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKCustomLoginViewController.m; sourceTree = "<group>"; };
+		26AD77FA180BF2CB00968F9C /* YTCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTCommon.h; sourceTree = "<group>"; };
+		26AD77FB180BF2CB00968F9C /* YTCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTCommon.m; sourceTree = "<group>"; };
 		26C4B32317FC429300913AF1 /* AKYouTubeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AKYouTubeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26C4B32617FC429300913AF1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		26C4B32817FC429300913AF1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,7 +70,6 @@
 		26C4B35D17FC501300913AF1 /* YTConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTConnector.m; sourceTree = "<group>"; };
 		26C4B36017FC501300913AF1 /* YTLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTLoginViewController.h; sourceTree = "<group>"; };
 		26C4B36117FC501300913AF1 /* YTLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YTLoginViewController.m; sourceTree = "<group>"; };
-		26C4B36417FC501300913AF1 /* YTConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YTConstants.h; sourceTree = "<group>"; };
 		26C4B36517FC501300913AF1 /* NSData+AKRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AKRest.h"; sourceTree = "<group>"; };
 		26C4B36617FC501300913AF1 /* NSData+AKRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AKRest.m"; sourceTree = "<group>"; };
 		26F3EDE4180403F30079C1E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -184,11 +186,12 @@
 		26C4B35B17FC501300913AF1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				26AD77FA180BF2CB00968F9C /* YTCommon.h */,
+				26AD77FB180BF2CB00968F9C /* YTCommon.m */,
 				26C4B35C17FC501300913AF1 /* YTConnector.h */,
 				26C4B35D17FC501300913AF1 /* YTConnector.m */,
 				26C4B36017FC501300913AF1 /* YTLoginViewController.h */,
 				26C4B36117FC501300913AF1 /* YTLoginViewController.m */,
-				26C4B36417FC501300913AF1 /* YTConstants.h */,
 				26C4B36517FC501300913AF1 /* NSData+AKRest.h */,
 				26C4B36617FC501300913AF1 /* NSData+AKRest.m */,
 				2682D1941802D40400E2CDAB /* Media.xcassets */,
@@ -302,6 +305,7 @@
 				26C4B33D17FC429300913AF1 /* AKViewController.m in Sources */,
 				26C4B33317FC429300913AF1 /* main.m in Sources */,
 				26F3EDEB18040A990079C1E6 /* AKTableViewController.m in Sources */,
+				26AD77FC180BF2CB00968F9C /* YTCommon.m in Sources */,
 				26C4B36717FC501300913AF1 /* YTConnector.m in Sources */,
 				26AD77F61808330500968F9C /* AKCustomLoginViewController.m in Sources */,
 			);

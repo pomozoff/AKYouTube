@@ -7,7 +7,7 @@
 //
 
 #import "YTConnector.h"
-#import "YTConstants.h"
+#import "YTCommon.h"
 #import "YTLoginViewController.h"
 
 #import "NSData+AKRest.h"
