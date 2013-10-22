@@ -145,10 +145,6 @@
     [self freeObjects];
 }
 - (void)dealloc {
-    [self removeSubviewsFromSuperviews];
-
-    self.webView.delegate = nil;
-    [self.webView stopLoading];
     [self freeObjects];
 }
 
