@@ -24,7 +24,7 @@
 @synthesize shouldPresentCloseButton = _shouldPresentCloseButton;
 @synthesize closeButtonImageName = _closeButtonImageName;
 
-#define CLOSE_BUTTON_SIZE 15.0f
+#define CLOSE_BUTTON_SIZE 25.0f
 #define MARGIN_BACK_VIEW_X 15.0f
 #define MARGIN_BACK_VIEW_TOP 30.0f
 #define MARGIN_BACK_VIEW_BOTTOM 25.0f
