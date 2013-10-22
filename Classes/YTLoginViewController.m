@@ -24,6 +24,7 @@
 @synthesize webView = _webView;
 @synthesize shouldPresentCloseButton = _shouldPresentCloseButton;
 @synthesize closeButtonImageName = _closeButtonImageName;
+@synthesize connector = _connector;
 
 #define CLOSE_BUTTON_SIZE 25.0f
 #define MARGIN_BACK_VIEW_X 15.0f
@@ -43,9 +44,12 @@
     
     self.backView = nil;
     self.closeButtonImageName = nil;
+    self.connector = nil;
 }
 - (void)closeButtonPressed:(id)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        [self.connector freeLoginViewController];
+    }];
 }
 - (CGRect)makeRectForView {
     CGRect appFrame = UIScreen.mainScreen.applicationFrame;
