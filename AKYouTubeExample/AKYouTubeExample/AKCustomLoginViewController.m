@@ -19,6 +19,7 @@
 #pragma mark - Synthesizes
 
 @synthesize webView = _webView;
+@synthesize connector = _connector;
 
 #pragma mark - Lifecycle
 
@@ -31,6 +32,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    [self.connector freeLoginViewController];
+}
+- (void)dealloc {
+    self.webView.delegate = nil;
+    [self.webView stopLoading];
 }
 
 @end
