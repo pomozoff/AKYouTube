@@ -12,6 +12,7 @@
 
 @interface YTLoginViewController ()
 
+@property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) UIView *backView;
 
 @end
@@ -35,6 +36,10 @@
 
 - (void)freeObjects {
     [self removeSubviewsFromSuperviews];
+    
+    self.webView.delegate = nil;
+    [self.webView stopLoading];
+    self.webView = nil;
     
     self.backView = nil;
     self.closeButtonImageName = nil;
