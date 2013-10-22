@@ -265,6 +265,7 @@ void(^requestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     [self networkActivityIndicatorIsVisible:NO];
+    NSLog(@"Failed load request: %@", error);
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [self scaleLoadedPageToWidth];
