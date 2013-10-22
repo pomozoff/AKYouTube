@@ -31,7 +31,7 @@
 - (void)connectionDidFailWithError:(NSError *)error;
 - (void)appDidFailAuthorize;
 - (void)presentLoginViewControler:(UIViewController<YTLoginViewControllerInterface> *)loginViewController;
-- (void)userRejectedApp;
+- (void)userRejectedAppWithCompletionBlock:(void(^)(void))completion;
 
 @end
 

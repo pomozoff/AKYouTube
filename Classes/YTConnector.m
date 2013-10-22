@@ -281,8 +281,10 @@ void(^RequestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
                     RequestCompletionBlock(selfWeak, error);
                 }];
             });
-        } else if ([self.delegate respondsToSelector:@selector(userRejectedApp)]) {
-            [self.delegate userRejectedApp];
+        } else if ([self.delegate respondsToSelector:@selector(userRejectedAppWithCompletionBlock:)]) {
+            [self.delegate userRejectedAppWithCompletionBlock:^{
+                [self freeLoginViewController];
+            }];
         }
     }
     
