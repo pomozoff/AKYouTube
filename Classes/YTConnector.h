@@ -14,6 +14,7 @@
 @protocol YTLoginViewControllerInterface <NSObject>
 
 @property (nonatomic, strong, readonly) UIWebView *webView;
+@property (nonatomic, weak) YTConnector *connector;
 
 @optional
 
