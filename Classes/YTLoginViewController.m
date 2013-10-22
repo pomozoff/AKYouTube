@@ -33,6 +33,12 @@
 
 #pragma mark - Private methods
 
+- (void)freeObjects {
+    [self removeSubviewsFromSuperviews];
+    
+    self.backView = nil;
+    self.closeButtonImageName = nil;
+}
 - (void)closeButtonPressed:(id)sender {
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -131,12 +137,14 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    [self freeObjects];
 }
 - (void)dealloc {
     [self removeSubviewsFromSuperviews];
 
     self.webView.delegate = nil;
     [self.webView stopLoading];
+    [self freeObjects];
 }
 
 @end
