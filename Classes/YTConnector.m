@@ -59,19 +59,23 @@ void(^requestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     // Fix Google's storm in the minds
     // <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
     
-    NSString *makeScalableJS = @"var all_metas = document.getElementsByTagName('meta');\
-    if (all_metas){\
-        var k;\
-        for (k = 0; k < all_metas.length; k++) {\
-            var meta_tag = all_metas[k];\
-            var viewport = meta_tag.getAttribute('name');\
-            if (viewport && viewport == 'viewport') {\
-                meta_tag.setAttribute('content','width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=1;');\
+    CGFloat scale = self.loginController.webView.frame.size.width / UIScreen.mainScreen.applicationFrame.size.width;
+    if (scale != 1.0f) {
+        NSString *makeScalableJS = @"var all_metas = document.getElementsByTagName('meta');\
+        if (all_metas){\
+            var k;\
+            for (k = 0; k < all_metas.length; k++) {\
+                var meta_tag = all_metas[k];\
+                var viewport = meta_tag.getAttribute('name');\
+                if (viewport && viewport == 'viewport') {\
+                    meta_tag.setAttribute('content','width=device-width; initial-scale=%.2f; maximum-scale=1.0; user-scalable=1;');\
+                }\
             }\
-        }\
-    }";
-    
-    [self.loginController.webView stringByEvaluatingJavaScriptFromString:makeScalableJS];
+        }";
+        
+        NSString *formattedString = [NSString stringWithFormat:makeScalableJS, scale];
+        [self.loginController.webView stringByEvaluatingJavaScriptFromString:formattedString];
+    }
 }
 - (NSURLRequest *)makeLoginURLRequest {
     NSString *stringUrl = [NSString stringWithFormat:@"%@?" \
