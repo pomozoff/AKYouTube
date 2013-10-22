@@ -16,8 +16,8 @@ typedef enum {
 
 @interface YTFetcher : NSObject
 
-+ (void)fetchPlaylistsWithOptions:(NSDictionary *)options blockCompletion:(void (^)(NSDictionary *, NSError *))completion;
-+ (void)fetchMinePlaylistsWithPart:(YTRequestPart)part blockCompletion:(void (^)(NSDictionary *, NSError *))completion;
-+ (void)fetchMinePlaylistsNumber:(NSInteger)count withPart:(YTRequestPart)part blockCompletion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchPlaylistsWithOptions:(NSDictionary *)options blockCompletion:(void (^)(NSArray *, NSError *))completion;
++ (void)fetchMinePlaylistsWithPart:(YTRequestPart)part blockCompletion:(void (^)(NSArray *, NSError *))completion;
++ (void)fetchMinePlaylistsNumber:(NSInteger)count withPart:(YTRequestPart)part blockCompletion:(void (^)(NSArray *, NSError *))completion;
 
 @end

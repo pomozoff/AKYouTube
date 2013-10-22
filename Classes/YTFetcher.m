@@ -35,7 +35,10 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
     
     return partText;
 }
-+ (void)fetchPlaylistsWithOptions:(NSDictionary *)options blockCompletion:(void (^)(NSDictionary *, NSError *))completion {
++ (NSArray *)makeArrayOfPlaylistsFromJSON:(NSDictionary *)jsonPlaylists {
+    return nil;
+}
++ (void)fetchPlaylistsWithOptions:(NSDictionary *)options blockCompletion:(void (^)(NSArray *, NSError *))completion {
     NSDictionary *resultOptions;
     if ([options objectForKey:YTOptionsKeyMine]) {
         resultOptions = options;
@@ -60,8 +63,10 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
                                                      withParameters:nil
                                                          responseIs:&response
                                                             errorIs:&error];
+    
+    completion([self makeArrayOfPlaylistsFromJSON:jsonAnswer], error);
 }
-+ (void)fetchMinePlaylistsWithPart:(YTRequestPart)part blockCompletion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchMinePlaylistsWithPart:(YTRequestPart)part blockCompletion:(void (^)(NSArray *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
 
     NSString *partText = [self textOfPart:part];
@@ -71,7 +76,7 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
 
     [self fetchPlaylistsWithOptions:options blockCompletion:completion];
 }
-+ (void)fetchMinePlaylistsNumber:(NSInteger)count withPart:(YTRequestPart)part blockCompletion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchMinePlaylistsNumber:(NSInteger)count withPart:(YTRequestPart)part blockCompletion:(void (^)(NSArray *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
     [options setObject:[NSNumber numberWithInteger:count] forKey:YTOptionsKeyMaxResults];
 
