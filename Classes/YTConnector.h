@@ -43,5 +43,6 @@
 - (void)connectWithClientId:(NSString *)clientId andClientSecret:(NSString *)clientSecret;
 - (void)authorizeAppWithScopesList:(NSString *)scopesList
              inLoginViewController:(UIViewController<YTLoginViewControllerInterface> *)loginViewController;
+- (void)freeLoginViewController;
 
 @end

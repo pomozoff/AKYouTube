@@ -208,6 +208,9 @@ void(^RequestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         [self.delegate presentLoginViewControler:self.loginController];
     }
 }
+- (void)freeLoginViewController {
+    self.loginController = nil;
+}
 
 #pragma mark - Properties
 
