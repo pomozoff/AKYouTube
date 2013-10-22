@@ -87,6 +87,7 @@ void(^requestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     return request;
 }
 - (void)setupLoginController:(UIViewController<YTLoginViewControllerInterface> *)loginController {
+    loginController.connector = self;
     loginController.webView.delegate = self;
     [loginController.webView loadRequest:[self makeLoginURLRequest]];
 }
