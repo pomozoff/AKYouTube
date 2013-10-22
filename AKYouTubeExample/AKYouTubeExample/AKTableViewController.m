@@ -26,7 +26,8 @@
 - (void)refreshTable {
     if (self.isConnected) {
         // TODO: fetch playlists
-        [YTFetcher fetchMinePlaylistsNumber:YTMaxItemsFetch withPart:REQUEST_PART_SNIPPET blockCompletion:^(NSDictionary *response, NSError *error) {
+        [YTFetcher fetchMinePlaylistsNumber:YTMaxItemsFetch withPart:REQUEST_PART_SNIPPET blockCompletion:^(NSArray *playlists, NSError *error) {
+            self.playlists = playlists;
             [self.refreshControl endRefreshing];
         }];
     } else {
@@ -43,8 +44,11 @@
 
 #pragma mark - Connector Delegate
 
-- (void)connectionEstablished {
+- (void)connectionEstablishedWithCompletionBlock:(void (^)(void))completion {
     NSLog(@"Connection established");
+
+    [self.navigationController popViewControllerAnimated:YES];
+    completion();
     
     self.isConnected = YES;
     [self refreshTable];
@@ -57,9 +61,12 @@
     
     [self performSegueWithIdentifier:AKYoutubeSegue sender:self];
 }
-- (void)userRejectedApp {
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)userRejectedAppWithCompletionBlock:(void (^)(void))completion {
+    NSLog(@"User rejected app");
 
+    [self.navigationController popViewControllerAnimated:YES];
+    completion();
+    
     self.playlists = @[];
     [self.tableView reloadData];
     

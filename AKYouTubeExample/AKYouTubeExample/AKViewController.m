@@ -11,7 +11,7 @@
 
 @interface AKViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *status;
+@property (nonatomic, weak) IBOutlet UILabel *status;
 @property (nonatomic, assign) BOOL isConnected;
 
 @end
@@ -36,11 +36,14 @@
     loginViewController.shouldPresentCloseButton = YES;
     [self presentViewController:loginViewController animated:YES completion:NULL];
 }
-- (void)connectionEstablished {
-    NSLog(@"Connection established");
-    
-    self.isConnected = YES;
-    self.status.text = @"Connected";
+- (void)connectionEstablishedWithCompletionBlock:(void (^)(void))completion {
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.isConnected = YES;
+        self.status.text = @"Connected";
+        completion();
+        
+        NSLog(@"Connection established");
+    }];
 }
 - (void)connectionDidFailWithError:(NSError *)error {
     self.status.text = @"Connection error";
@@ -52,10 +55,11 @@
     self.status.text = @"Authorizing ...";
     [YTConnector.sharedInstance authorizeAppWithScopesList:nil inLoginViewController:nil];
 }
-- (void)userRejectedApp {
+- (void)userRejectedAppWithCompletionBlock:(void (^)(void))completion {
     [self dismissViewControllerAnimated:YES completion:^{
         self.isConnected = NO;
         self.status.text = @"Rejected";
+        completion();
         
         NSLog(@"User rejected app");
     }];
