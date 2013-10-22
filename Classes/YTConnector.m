@@ -29,7 +29,7 @@
 
 #pragma mark - block
 
-void(^RequestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTConnector *selfWeak, NSError *error) {
+void(^requestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTConnector *selfWeak, NSError *error) {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (error) {
             if ([selfWeak.delegate respondsToSelector:@selector(connectionDidFailWithError:)]) {
@@ -192,7 +192,7 @@ void(^RequestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         dispatch_async(connectQueue, ^{
             [self refreshAccessTokenWithCompletion:^(NSError *error) {
                 __weak YTConnector *selfWeak = self;
-                RequestCompletionBlock(selfWeak, error);
+                requestCompletionBlock(selfWeak, error);
             }];
         });
     } else {
@@ -278,7 +278,7 @@ void(^RequestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
             dispatch_async(connectQueue, ^{
                 [self exchangeAuthCodeForAccessAndRefreshTokens:authCode withCompletion:^(NSError *error) {
                     __weak YTConnector *selfWeak = self;
-                    RequestCompletionBlock(selfWeak, error);
+                    requestCompletionBlock(selfWeak, error);
                 }];
             });
         } else if ([self.delegate respondsToSelector:@selector(userRejectedAppWithCompletionBlock:)]) {
