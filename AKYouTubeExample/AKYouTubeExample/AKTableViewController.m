@@ -69,8 +69,6 @@
     
     self.playlists = @[];
     [self.tableView reloadData];
-    
-    NSLog(@"User rejected app");
 }
 
 #pragma mark - Table view data source
