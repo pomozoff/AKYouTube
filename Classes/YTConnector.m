@@ -216,6 +216,7 @@ void(^requestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 }
 - (void)freeLoginViewController {
     self.loginController = nil;
+    NSLog(@"Login controller freed ...");
 }
 
 #pragma mark - Properties
