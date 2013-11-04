@@ -57,7 +57,7 @@
     NSLog(@"%@ - Connection failed: %@", NSStringFromClass(self.class), error);
 }
 - (void)appDidFailAuthorize {
-    NSLog(@"App did fail authorize, calling login view controller ...");
+    NSLog(@"App did fail authorize, push login view controller ...");
     
     [self performSegueWithIdentifier:AKYoutubeSegue sender:self];
 }

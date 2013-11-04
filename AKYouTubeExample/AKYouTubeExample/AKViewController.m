@@ -50,7 +50,7 @@
     NSLog(@"%@ - Connection failed: %@", NSStringFromClass(self.class), error);
 }
 - (void)appDidFailAuthorize {
-    NSLog(@"App did fail authorize, calling default login view controller ...");
+    NSLog(@"App did fail authorize, present default login view controller ...");
     
     self.status.text = @"Authorizing ...";
     [YTConnector.sharedInstance authorizeAppWithScopesList:nil inLoginViewController:nil];
