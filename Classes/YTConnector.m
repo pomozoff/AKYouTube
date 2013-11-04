@@ -42,7 +42,6 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
                 }];
             }
         }
-        
     });
 };
 
