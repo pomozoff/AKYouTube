@@ -19,7 +19,7 @@
 @optional
 
 @property (nonatomic, assign) BOOL shouldPresentCloseButton;
-@property (nonatomic, strong) UIImage *closeButtonImageName;
+@property (nonatomic, strong) UIImage *closeButtonImage;
 
 @end
 

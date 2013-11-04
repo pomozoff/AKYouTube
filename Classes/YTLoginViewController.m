@@ -23,7 +23,7 @@
 
 @synthesize webView = _webView;
 @synthesize shouldPresentCloseButton = _shouldPresentCloseButton;
-@synthesize closeButtonImageName = _closeButtonImageName;
+@synthesize closeButtonImage = _closeButtonImageName;
 @synthesize connector = _connector;
 
 #define CLOSE_BUTTON_SIZE 25.0f
@@ -43,7 +43,7 @@
     self.webView = nil;
     
     self.backView = nil;
-    self.closeButtonImageName = nil;
+    self.closeButtonImage = nil;
     self.connector = nil;
 }
 - (void)closeButtonPressed:(id)sender {
@@ -82,7 +82,7 @@
         CGRect rectCloseButton = CGRectMake(closeButtonX, closeButtonY, CLOSE_BUTTON_SIZE, CLOSE_BUTTON_SIZE);
         UIButton *closeButtonView = [[UIButton alloc] initWithFrame:rectCloseButton];
         [closeButtonView addTarget:self action:@selector(closeButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [closeButtonView setImage:self.closeButtonImageName forState:UIControlStateNormal];
+        [closeButtonView setImage:self.closeButtonImage forState:UIControlStateNormal];
         [self.view addSubview:closeButtonView];
     }
 }
@@ -125,7 +125,7 @@
     
     return _backView;
 }
-- (UIImage *)closeButtonImageName {
+- (UIImage *)closeButtonImage {
     if (!_closeButtonImageName) {
         _closeButtonImageName = [UIImage imageNamed:@"closeButtonImageLoginViewController"];
     }
