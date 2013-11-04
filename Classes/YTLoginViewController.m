@@ -144,10 +144,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor grayColor];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    [self freeObjects];
-}
 - (void)dealloc {
     [self freeObjects];
 }
