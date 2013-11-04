@@ -1,0 +1,74 @@
+participant ViewController
+participant Connector
+participant Connector.delegate
+participant LVC
+actor User
+participant WebView.delegate
+
+activate ViewController
+activate Connector.delegate
+ViewController -->> Connector: set Connector.delegate:self
+ViewController -->> Connector.delegate: it is a Connector's delegate
+
+ViewController -> Connector: connect with id's
+activate Connector
+  Connector -> Connector: load refresh token
+  activate Connector #FFBBBB
+  deactivate Connector
+    
+  alt success - got refresh token
+    Connector -> Connector: refresh access token
+    
+    activate Connector #FFBBBB
+      alt success - got access token
+        Connector ->> Connector.delegate: connection established
+        Connector -> Connector: free LVC
+        activate Connector
+        deactivate Connector
+      else failed - some error
+        Connector ->> Connector.delegate: connection did fail
+      end
+    deactivate Connector
+  else failed - no refresh token yet
+    Connector -> Connector.delegate: did fail auth
+    activate Connector.delegate #FFBBBB
+      Connector.delegate -> Connector: auth app with scopes list
+    deactivate Connector.delegate
+    
+    activate Connector #FFBBBB
+      activate LVC
+        activate WebView.delegate
+         Connector -> LVC: create
+         Connector -->> LVC: set WebView.delegate:self
+         Connector -->> WebView.delegate: it is a WebView's delegate
+         Connector -> Connector.delegate: present LoginViewController
+        activate Connector.delegate #FFBBBB
+          Connector.delegate -> LVC: present LVC
+          LVC -> User: present google auth page
+          
+          activate User
+            User -> WebView.delegate: auth app
+          deactivate User
+          
+          alt success - got auth code
+            WebView.delegate -> Connector: exchange auth code for access and refresh tokens
+              alt success - got both tokens
+                Connector ->> Connector.delegate: connection established
+                Connector -> Connector: free LVC
+                activate Connector
+                deactivate Connector
+      deactivate LVC
+              else failed - some error
+                Connector ->> Connector.delegate: connection did fail
+              end
+            deactivate Connector
+          else failed - user rejected app
+              WebView.delegate -> Connector.delegate: user rejected app
+          end
+        deactivate Connector.delegate
+  end
+  Connector --> ViewController: return
+deactivate Connector.delegate
+deactivate WebView.delegate
+deactivate ViewController
+deactivate Connector
