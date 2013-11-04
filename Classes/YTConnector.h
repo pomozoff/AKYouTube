@@ -40,7 +40,7 @@
 @property (nonatomic, weak) id<YTConnectorDelegate> delegate;
 @property (nonatomic, copy, readonly) NSString *accessToken;
 
-+ (YTConnector *)sharedInstance;
++ (instancetype)sharedInstance;
 - (void)connectWithClientId:(NSString *)clientId andClientSecret:(NSString *)clientSecret;
 - (void)authorizeAppWithScopesList:(NSString *)scopesList
              inLoginViewController:(UIViewController<YTLoginViewControllerInterface> *)loginViewController;

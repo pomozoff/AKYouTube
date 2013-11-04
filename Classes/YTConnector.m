@@ -179,14 +179,14 @@ void(^requestCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 
 #pragma mark - Public interface
 
-+ (YTConnector *)sharedInstance {
++ (instancetype)sharedInstance {
     static dispatch_once_t once;
-    static YTConnector *sharedInstance = nil;
+    static id _sharedInstance = nil;
     dispatch_once(&once, ^{
-        sharedInstance = [[YTConnector alloc] init];
+        _sharedInstance = [[self alloc] init];
     });
     
-    return sharedInstance;
+    return _sharedInstance;
 }
 - (void)connectWithClientId:(NSString *)clientId andClientSecret:(NSString *)clientSecret {
     self.clientId     = clientId;
