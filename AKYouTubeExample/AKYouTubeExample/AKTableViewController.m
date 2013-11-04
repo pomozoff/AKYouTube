@@ -42,6 +42,15 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
+#pragma mark - Actions
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"YouTube Login Segue"]) {
+        UIViewController<YTLoginViewControllerInterface> *loginController = (UIViewController<YTLoginViewControllerInterface> *)segue.destinationViewController;
+        loginController.connector = YTConnector.sharedInstance;
+    }
+}
+
 #pragma mark - Connector Delegate
 
 - (void)connectionEstablishedWithCompletionBlock:(void (^)(void))completion {
