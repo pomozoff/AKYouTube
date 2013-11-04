@@ -88,7 +88,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSDictionary *sectionObject = [self.playlists objectAtIndex:section];
-    NSArray *rows = [sectionObject objectForKey:@"rows"];
+    NSArray *rows = sectionObject[@"rows"];
     
     return rows.count;
 }
