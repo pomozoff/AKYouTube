@@ -42,7 +42,7 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
-#pragma mark - Actions
+#pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"YouTube Login Segue"]) {
