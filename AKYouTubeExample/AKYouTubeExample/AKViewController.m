@@ -36,18 +36,25 @@
     loginViewController.shouldPresentCloseButton = YES;
     [self presentViewController:loginViewController animated:YES completion:NULL];
 }
-- (void)connectionEstablishedCompletion:(void (^)(void))completion {
+- (void)connectionEstablished {
     [self dismissViewControllerAnimated:YES completion:^{
         self.isConnected = YES;
         self.status.text = @"Connected";
-        completion();
+        
+        [YTConnector.sharedInstance freeLoginViewController];
         
         NSLog(@"Connection established");
     }];
 }
 - (void)connectionDidFailWithError:(NSError *)error {
-    self.status.text = @"Connection error";
-    NSLog(@"%@ - Connection failed: %@", NSStringFromClass(self.class), error);
+    [self dismissViewControllerAnimated:YES completion:^{
+        self.isConnected = NO;
+        self.status.text = @"Connection error";
+        
+        [YTConnector.sharedInstance freeLoginViewController];
+        
+        NSLog(@"%@ - Connection failed: %@", NSStringFromClass(self.class), error);
+    }];
 }
 - (void)appDidFailAuthorize {
     NSLog(@"App did fail authorize, present default login view controller ...");
@@ -55,11 +62,12 @@
     self.status.text = @"Authorizing ...";
     [YTConnector.sharedInstance authorizeAppWithScopesList:nil inLoginViewController:nil];
 }
-- (void)userRejectedAppCompletion:(void (^)(void))completion {
+- (void)userRejectedApp {
     [self dismissViewControllerAnimated:YES completion:^{
         self.isConnected = NO;
         self.status.text = @"Rejected";
-        completion();
+
+        [YTConnector.sharedInstance freeLoginViewController];
         
         NSLog(@"User rejected app");
     }];

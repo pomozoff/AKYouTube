@@ -36,10 +36,8 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
                 [selfWeak.delegate connectionDidFailWithError:error];
             }
         } else {
-            if ([selfWeak.delegate respondsToSelector:@selector(connectionEstablishedCompletion:)]) {
-                [selfWeak.delegate connectionEstablishedCompletion:^{
-                    [selfWeak freeLoginViewController];
-                }];
+            if ([selfWeak.delegate respondsToSelector:@selector(connectionEstablished)]) {
+                [selfWeak.delegate connectionEstablished];
             }
         }
     });
@@ -288,10 +286,8 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
                     connectCompletionBlock(selfWeak, error);
                 }];
             });
-        } else if ([self.delegate respondsToSelector:@selector(userRejectedAppCompletion:)]) {
-            [self.delegate userRejectedAppCompletion:^{
-                [self freeLoginViewController];
-            }];
+        } else if ([self.delegate respondsToSelector:@selector(userRejectedApp)]) {
+            [self.delegate userRejectedApp];
         }
     }
     

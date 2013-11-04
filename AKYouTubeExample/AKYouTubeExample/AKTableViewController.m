@@ -53,16 +53,17 @@
 
 #pragma mark - Connector Delegate
 
-- (void)connectionEstablishedCompletion:(void (^)(void))completion {
+- (void)connectionEstablished {
     NSLog(@"Connection established");
 
     [self.navigationController popViewControllerAnimated:YES];
-    completion();
+    [YTConnector.sharedInstance freeLoginViewController];
     
     self.isConnected = YES;
     [self refreshTable];
 }
 - (void)connectionDidFailWithError:(NSError *)error {
+    [YTConnector.sharedInstance freeLoginViewController];
     NSLog(@"%@ - Connection failed: %@", NSStringFromClass(self.class), error);
 }
 - (void)appDidFailAuthorize {
@@ -70,11 +71,11 @@
     
     [self performSegueWithIdentifier:AKYoutubeSegue sender:self];
 }
-- (void)userRejectedAppCompletion:(void (^)(void))completion {
+- (void)userRejectedApp {
     NSLog(@"User rejected app");
 
     [self.navigationController popViewControllerAnimated:YES];
-    completion();
+    [YTConnector.sharedInstance freeLoginViewController];
     
     self.playlists = @[];
     [self.tableView reloadData];
