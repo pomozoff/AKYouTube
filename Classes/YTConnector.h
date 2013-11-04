@@ -27,11 +27,11 @@
 
 @optional
 
-- (void)connectionEstablishedWithCompletionBlock:(void (^)(void))completion;
+- (void)connectionEstablishedCompletion:(void (^)(void))completion;
 - (void)connectionDidFailWithError:(NSError *)error;
 - (void)appDidFailAuthorize;
 - (void)presentLoginViewControler:(UIViewController<YTLoginViewControllerInterface> *)loginViewController;
-- (void)userRejectedAppWithCompletionBlock:(void(^)(void))completion;
+- (void)userRejectedAppCompletion:(void(^)(void))completion;
 
 @end
 

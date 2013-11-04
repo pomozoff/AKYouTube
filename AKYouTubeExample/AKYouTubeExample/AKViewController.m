@@ -36,7 +36,7 @@
     loginViewController.shouldPresentCloseButton = YES;
     [self presentViewController:loginViewController animated:YES completion:NULL];
 }
-- (void)connectionEstablishedWithCompletionBlock:(void (^)(void))completion {
+- (void)connectionEstablishedCompletion:(void (^)(void))completion {
     [self dismissViewControllerAnimated:YES completion:^{
         self.isConnected = YES;
         self.status.text = @"Connected";
@@ -55,7 +55,7 @@
     self.status.text = @"Authorizing ...";
     [YTConnector.sharedInstance authorizeAppWithScopesList:nil inLoginViewController:nil];
 }
-- (void)userRejectedAppWithCompletionBlock:(void (^)(void))completion {
+- (void)userRejectedAppCompletion:(void (^)(void))completion {
     [self dismissViewControllerAnimated:YES completion:^{
         self.isConnected = NO;
         self.status.text = @"Rejected";

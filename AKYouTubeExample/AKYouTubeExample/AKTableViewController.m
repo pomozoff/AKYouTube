@@ -53,7 +53,7 @@
 
 #pragma mark - Connector Delegate
 
-- (void)connectionEstablishedWithCompletionBlock:(void (^)(void))completion {
+- (void)connectionEstablishedCompletion:(void (^)(void))completion {
     NSLog(@"Connection established");
 
     [self.navigationController popViewControllerAnimated:YES];
@@ -70,7 +70,7 @@
     
     [self performSegueWithIdentifier:AKYoutubeSegue sender:self];
 }
-- (void)userRejectedAppWithCompletionBlock:(void (^)(void))completion {
+- (void)userRejectedAppCompletion:(void (^)(void))completion {
     NSLog(@"User rejected app");
 
     [self.navigationController popViewControllerAnimated:YES];
