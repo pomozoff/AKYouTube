@@ -48,7 +48,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 @synthesize loginController = _loginController;
 @synthesize refreshToken = _refreshToken;
 
-#pragma mark - Private methods
+#pragma mark - Private methods - Others
 
 - (void)networkActivityIndicatorIsVisible:(BOOL)isVisible {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:isVisible];
@@ -115,6 +115,8 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     return isExpired;
 }
 
+#pragma mark - Private methods - App auth
+
 - (void)exchangeAuthCodeForAccessAndRefreshTokens:(NSString *)authCode withCompletion:(void (^)(NSError *))completion {
     NSDictionary *queryData = @{
                                 @"code"          : authCode,
@@ -172,6 +174,15 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         
         completion(error);
     }
+}
+
+#pragma mark - Private methods - Fetch YouTube
+
+- (void)fetchPlaylistsCompletion:(void (^)(NSArray *playlists, NSError *error))completion {
+    
+}
+- (void)fetchChannelsCompletion:(void (^)(NSArray *channels, NSError *error))completion {
+    
 }
 
 #pragma mark - Public interface
