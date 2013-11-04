@@ -26,9 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [YTConnector.sharedInstance authorizeAppWithScopesList:nil
-                                     inLoginViewController:(UIViewController<YTLoginViewControllerInterface> *)self];
 }
+    [self.connector authorizeAppWithScopesList:nil
+                         inLoginViewController:(UIViewController<YTLoginViewControllerInterface> *)self];
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
