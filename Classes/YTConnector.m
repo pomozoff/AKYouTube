@@ -227,6 +227,16 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 - (void)fetchChannelsAsObjectsCompletion:(void (^)(NSArray *channels, NSError *error))completion {
     completion(nil, nil);
 }
+
+#warning TODO: Finish fetching playlists as JSON
+- (void)fetchPlaylistsAsJSONCompletion:(void (^)(NSDictionary *playlists, NSError *error))completion {
+    completion(nil, nil);
+}
+#warning TODO: Finish fetching channels as JSON
+- (void)fetchChannelsAsJSONCompletion:(void (^)(NSDictionary *channels, NSError *error))completion {
+    completion(nil, nil);
+}
+
 #pragma mark - Properties
 
 - (UIViewController<YTLoginViewControllerInterface> *)loginController {

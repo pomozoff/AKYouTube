@@ -41,11 +41,16 @@
 @property (nonatomic, copy, readonly) NSString *accessToken;
 
 + (instancetype)sharedInstance;
+
 - (void)connectWithClientId:(NSString *)clientId andClientSecret:(NSString *)clientSecret;
 - (void)authorizeAppWithScopesList:(NSString *)scopesList
              inLoginViewController:(UIViewController<YTLoginViewControllerInterface> *)loginViewController;
 - (void)freeLoginViewController;
+
 - (void)fetchPlaylistsAsObjectsCompletion:(void (^)(NSArray *playlists, NSError *error))completion;
 - (void)fetchChannelsAsObjectsCompletion:(void (^)(NSArray *channels, NSError *error))completion;
+
+- (void)fetchPlaylistsAsJSONCompletion:(void (^)(NSDictionary *playlists, NSError *error))completion;
+- (void)fetchChannelsAsJSONCompletion:(void (^)(NSDictionary *channels, NSError *error))completion;
 
 @end
