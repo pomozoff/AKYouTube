@@ -176,15 +176,6 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     }
 }
 
-#pragma mark - Private methods - Fetch YouTube
-
-- (void)fetchPlaylistsCompletion:(void (^)(NSArray *playlists, NSError *error))completion {
-    
-}
-- (void)fetchChannelsCompletion:(void (^)(NSArray *channels, NSError *error))completion {
-    
-}
-
 #pragma mark - Public interface
 
 + (instancetype)sharedInstance {
@@ -228,6 +219,14 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     NSLog(@"Login controller freed ...");
 }
 
+#warning TODO: Finish fetching playlists as objects
+- (void)fetchPlaylistsAsObjectsCompletion:(void (^)(NSArray *playlists, NSError *error))completion {
+    completion(nil, nil);
+}
+#warning TODO: Finish fetching channels as objects
+- (void)fetchChannelsAsObjectsCompletion:(void (^)(NSArray *channels, NSError *error))completion {
+    completion(nil, nil);
+}
 #pragma mark - Properties
 
 - (UIViewController<YTLoginViewControllerInterface> *)loginController {

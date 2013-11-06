@@ -45,7 +45,7 @@
 - (void)authorizeAppWithScopesList:(NSString *)scopesList
              inLoginViewController:(UIViewController<YTLoginViewControllerInterface> *)loginViewController;
 - (void)freeLoginViewController;
-- (void)fetchPlaylistsCompletion:(void (^)(NSArray *playlists, NSError *error))completion;
-- (void)fetchChannelsCompletion:(void (^)(NSArray *channels, NSError *error))completion;
+- (void)fetchPlaylistsAsObjectsCompletion:(void (^)(NSArray *playlists, NSError *error))completion;
+- (void)fetchChannelsAsObjectsCompletion:(void (^)(NSArray *channels, NSError *error))completion;
 
 @end
