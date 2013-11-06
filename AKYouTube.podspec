@@ -10,6 +10,7 @@ Pod::Spec.new do |s|
   s.source                = { :git => "https://github.com/pomozoff/AKYouTube.git", :tag => s.version.to_s }
   s.source_files          = 'Classes/*.{h,m}'
   s.public_header_files   = 'Classes/*.h'
+  s.resources             = "Resources/*.xcassets/*.*/*.{png,json}"
   s.frameworks            = 'UIKit', 'Foundation'
   s.requires_arc          = true
 
