@@ -84,9 +84,14 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
 #pragma mark - Public interface
 
 + (void)fetchPlaylistObjectsWithOptions:(NSDictionary *)options completion:(void (^)(NSArray *, NSError *))completion {
-    NSError *error = nil;
-    NSDictionary *jsonAnswer = [self fetchPlaylistsWithOptions:options errorIs:&error];
-    completion([self makeArrayOfPlaylistsFromJSON:jsonAnswer], error);
+    dispatch_queue_t connectQueue = dispatch_queue_create("YouTube fetch playlists as objects", NULL);
+    dispatch_async(connectQueue, ^{
+        NSError *error = nil;
+        NSDictionary *jsonAnswer = [self fetchPlaylistsWithOptions:options errorIs:&error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion([self makeArrayOfPlaylistsFromJSON:jsonAnswer], error);
+        });
+    });
 }
 + (void)fetchMinePlaylistObjectsWithPart:(YTRequestPart)part completion:(void (^)(NSArray *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
@@ -103,9 +108,14 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
 }
 
 + (void)fetchPlaylistsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
-    NSError *error = nil;
-    NSDictionary *jsonAnswer = [self fetchPlaylistsWithOptions:options errorIs:&error];
-    completion(jsonAnswer, error);
+    dispatch_queue_t connectQueue = dispatch_queue_create("YouTube fetch playlists as JSON", NULL);
+    dispatch_async(connectQueue, ^{
+        NSError *error = nil;
+        NSDictionary *jsonAnswer = [self fetchPlaylistsWithOptions:options errorIs:&error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(jsonAnswer, error);
+        });
+    });
 }
 + (void)fetchMinePlaylistsJsonWithPart:(YTRequestPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
