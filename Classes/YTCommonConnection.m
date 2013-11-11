@@ -47,9 +47,9 @@
     NSDictionary *jsonAnswer;
     if ( !(*error) ) {
         jsonAnswer = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:error];
-        
-        //        NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        //        NSLog(@"Response is:\n%@", jsonString);
+
+        //NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        //NSLog(@"Response is:\n%@", jsonString);
     }
     
     return jsonAnswer;
