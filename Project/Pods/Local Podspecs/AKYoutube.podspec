@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "AKYouTube"
-  s.version               = "0.0.6"
+  s.version               = "0.0.7"
   s.summary               = "Simple REST client to YouTube v3 API"
   s.homepage              = "https://github.com/pomozoff/AKYouTube"
   s.license               = { :type => 'MIT', :file => 'LICENSE' }
@@ -13,6 +13,4 @@ Pod::Spec.new do |s|
   s.resources             = "Resources/*.xcassets"
   s.frameworks            = 'UIKit', 'Foundation'
   s.requires_arc          = true
-
-  s.dependency 'EasyMapping'
 end

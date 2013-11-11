@@ -7,7 +7,7 @@
 //
 
 #import "YTConnector.h"
-#import "YTCommonConnection.h"
+#import "YTCommon.h"
 #import "YTLoginViewController.h"
 
 @interface YTConnector() <UIWebViewDelegate>
@@ -129,7 +129,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 	NSHTTPURLResponse *response;
     NSError *error = nil;
     
-    NSDictionary *jsonAnswer = [YTCommonConnection jsonAnswerForRequestMethod:REST_METHOD_POST
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_POST
                                                       withUrlString:YTGoogleTokenURL
                                                      withParameters:queryData
                                                          responseIs:&response
@@ -158,7 +158,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         NSHTTPURLResponse *response;
         NSError *error = nil;
         
-        NSDictionary *jsonAnswer = [YTCommonConnection jsonAnswerForRequestMethod:REST_METHOD_POST
+        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_POST
                                                           withUrlString:YTGoogleTokenURL
                                                          withParameters:queryData
                                                              responseIs:&response

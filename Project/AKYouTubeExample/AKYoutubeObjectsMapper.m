@@ -1,23 +1,16 @@
 //
-//  YTMappingProvider.m
-//  Pods
+//  AKYoutubeObjectsMapper.m
+//  AKYouTubeExample
 //
-//  Created by Anton Pomozov on 06.11.13.
+//  Created by Антон Помозов on 11.11.13.
+//  Copyright (c) 2013 Akademon Ltd. All rights reserved.
 //
-//
 
-#import "YTMappingProvider.h"
+#import "AKYoutubeObjectsMapper.h"
+#import "AKPlaylistYouTubeObject.h"
+#import "AKResponseYouTubeObject.h"
 
-#import "YTResponsePlaylistObject.h"
-#import "YTPlaylistObject.h"
-
-@interface YTMappingProvider ()
-
-@property (nonatomic, strong) NSDateFormatter *dateFormatter;
-
-@end
-
-@implementation YTMappingProvider
+@implementation AKYoutubeObjectsMapper
 
 #pragma mark - Private methods
 
@@ -28,7 +21,7 @@
 #pragma mark - Public interface
 
 + (EKObjectMapping *)playlistMapping {
-    return [EKObjectMapping mappingForClass:[YTPlaylistObject class] withBlock:^(EKObjectMapping *mapping) {
+    return [EKObjectMapping mappingForClass:[AKPlaylistYouTubeObject class] withBlock:^(EKObjectMapping *mapping) {
         [self addHeaderMapping:mapping];
         [mapping mapFieldsFromDictionary:@{
             @"id" : @"itemId"
@@ -46,7 +39,7 @@
 }
 + (EKObjectMapping *)responsePlaylistMapping
 {
-    return [EKObjectMapping mappingForClass:[YTResponsePlaylistObject class] withBlock:^(EKObjectMapping *mapping) {
+    return [EKObjectMapping mappingForClass:[AKResponseYouTubeObject class] withBlock:^(EKObjectMapping *mapping) {
         [self addHeaderMapping:mapping];
         [mapping mapKey:@"pageInfo.totalResults" toField:@"totalResults"];
         [mapping mapKey:@"pageInfo.resultsPerPage" toField:@"resultsPerPage"];

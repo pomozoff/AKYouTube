@@ -1,3 +1,4 @@
 link_with ['AKYouTubeExample', 'AKYouTubeExampleTests']
 platform :ios, '7.0'
 pod 'AKYouTube', :path => '..'
+pod 'EasyMapping'

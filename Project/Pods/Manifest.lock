@@ -1,17 +1,17 @@
 PODS:
-  - AKYouTube (0.0.6):
-    - EasyMapping
+  - AKYouTube (0.0.7)
   - EasyMapping (0.4.8)
 
 DEPENDENCIES:
   - AKYouTube (from `..`)
+  - EasyMapping
 
 EXTERNAL SOURCES:
   AKYouTube:
     :path: ..
 
 SPEC CHECKSUMS:
-  AKYouTube: 25af00fd25fb6637c3ffb152fe242abbb2903d69
+  AKYouTube: 6a39eddb3f9794f323d2a08b36f5c84f67d13db2
   EasyMapping: 26b902cc75caec47158c97c2fa7913106a195546
 
 COCOAPODS: 0.27.1

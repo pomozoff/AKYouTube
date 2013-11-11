@@ -8,9 +8,14 @@
 
 #import "AKTableViewController.h"
 #import "AKConstants.h"
+
+#import <EKMapper.h>
+#import "AKResponseYouTubeObject.h"
+#import "AKPlaylistYouTubeObject.h"
+#import "AKYoutubeObjectsMapper.h"
+
 #import "YTFetcher.h"
-#import "YTCommonConnection.h"
-#import "YTPlaylistObject.h"
+#import "YTCommon.h"
 
 @interface AKTableViewController ()
 
@@ -27,8 +32,11 @@
 - (void)refreshTable {
     if (self.isConnected) {
         // TODO: fetch playlists
-        [YTFetcher fetchMinePlaylistObjectsWithPart:REQUEST_PART_SNIPPET completion:^(NSArray *playlists, NSError *error) {
-            self.playlists = playlists;
+        [YTFetcher fetchMinePlaylistsJsonWithPart:REQUEST_PLAYLIST_PART_SNIPPET completion:^(NSDictionary *playlistsJson, NSError *error) {
+            AKResponseYouTubeObject *response = [EKMapper objectFromExternalRepresentation:playlistsJson
+                                                                               withMapping:[AKYoutubeObjectsMapper responsePlaylistMapping]];
+
+            self.playlists = response.items;
             [self.refreshControl endRefreshing];
         }];
     } else {
@@ -102,7 +110,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    YTPlaylistObject *playlist = self.playlists[indexPath.row];
+    AKPlaylistYouTubeObject *playlist = self.playlists[indexPath.row];
     cell.textLabel.text = playlist.title;
     cell.detailTextLabel.text = playlist.itemDescription;
     

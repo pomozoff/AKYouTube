@@ -1,15 +1,14 @@
 //
-//  YTPlaylist.h
+//  AKPlaylistYouTubeObject.h
 //  AKYouTubeExample
 //
-//  Created by Anton Pomozov on 15.10.13.
+//  Created by Антон Помозов on 11.11.13.
 //  Copyright (c) 2013 Akademon Ltd. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "YTCommonObject.h"
+#import "AKBaseYouTubeObject.h"
 
-@interface YTPlaylistObject : YTCommonObject
+@interface AKPlaylistYouTubeObject : AKBaseYouTubeObject
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *channelId;

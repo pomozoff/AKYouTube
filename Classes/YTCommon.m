@@ -1,15 +1,15 @@
 //
-//  YTCommonConnection.m
+//  YTCommon.m
 //  AKYouTubeExample
 //
 //  Created by Anton Pomozov on 14.10.13.
 //  Copyright (c) 2013 Akademon Ltd. All rights reserved.
 //
 
-#import "YTCommonConnection.h"
+#import "YTCommon.h"
 #import "NSData+AKRest.h"
 
-@implementation YTCommonConnection
+@implementation YTCommon
 
 + (NSString *)makeOptionsListFromOptions:(NSDictionary *)options {
     __block NSMutableArray *optionsArray = [NSMutableArray array];
