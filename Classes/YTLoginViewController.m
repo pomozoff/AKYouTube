@@ -23,7 +23,7 @@
 
 @synthesize webView = _webView;
 @synthesize shouldPresentCloseButton = _shouldPresentCloseButton;
-@synthesize closeButtonImage = _closeButtonImageName;
+@synthesize closeButtonImage = _closeButtonImage;
 @synthesize connector = _connector;
 
 #define CLOSE_BUTTON_SIZE 25.0f
@@ -126,11 +126,11 @@
     return _backView;
 }
 - (UIImage *)closeButtonImage {
-    if (!_closeButtonImageName) {
-        _closeButtonImageName = [UIImage imageNamed:@"closeButtonImageLoginViewController"];
+    if (!_closeButtonImage) {
+        _closeButtonImage = [UIImage imageNamed:@"closeButtonImageLoginViewController"];
     }
     
-    return _closeButtonImageName;
+    return _closeButtonImage;
 }
 
 #pragma mark - Lifecycle

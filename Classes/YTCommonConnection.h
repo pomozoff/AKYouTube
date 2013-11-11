@@ -1,5 +1,5 @@
 //
-//  YTCommon.h
+//  YTCommonConnection.h
 //  AKYouTubeExample
 //
 //  Created by Anton Pomozov on 14.10.13.
@@ -33,7 +33,7 @@ typedef enum {
     REST_METHOD_GET
 } RestMethod;
 
-@interface YTCommon : NSObject
+@interface YTCommonConnection : NSObject
 
 + (NSString *)makeOptionsListFromOptions:(NSDictionary *)options;
 + (NSDictionary *)jsonAnswerForRequestMethod:(RestMethod)method

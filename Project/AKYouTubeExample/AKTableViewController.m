@@ -9,7 +9,7 @@
 #import "AKTableViewController.h"
 #import "AKConstants.h"
 #import "YTFetcher.h"
-#import "YTCommon.h"
+#import "YTCommonConnection.h"
 
 @interface AKTableViewController ()
 
@@ -26,7 +26,7 @@
 - (void)refreshTable {
     if (self.isConnected) {
         // TODO: fetch playlists
-        [YTFetcher fetchMinePlaylistsNumber:YTMaxItemsFetch withPart:REQUEST_PART_SNIPPET blockCompletion:^(NSArray *playlists, NSError *error) {
+        [YTFetcher fetchMinePlaylistObjectsWithPart:REQUEST_PART_SNIPPET completion:^(NSArray *playlists, NSError *error) {
             self.playlists = playlists;
             [self.refreshControl endRefreshing];
         }];
