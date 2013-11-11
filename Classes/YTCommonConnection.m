@@ -12,7 +12,7 @@
 @implementation YTCommonConnection
 
 + (NSString *)makeOptionsListFromOptions:(NSDictionary *)options {
-    __block NSMutableArray *optionsArray;
+    __block NSMutableArray *optionsArray = [NSMutableArray array];
     
     [options enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         [optionsArray addObject:[NSString stringWithFormat:@"%@=%@", key, obj]];
