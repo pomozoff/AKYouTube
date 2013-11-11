@@ -7,7 +7,7 @@
 //
 
 #import "YTConnector.h"
-#import "YTCommon.h"
+#import "YTCommonConnection.h"
 #import "YTLoginViewController.h"
 
 @interface YTConnector() <UIWebViewDelegate>
@@ -129,7 +129,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 	NSHTTPURLResponse *response;
     NSError *error = nil;
     
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_POST
+    NSDictionary *jsonAnswer = [YTCommonConnection jsonAnswerForRequestMethod:REST_METHOD_POST
                                                       withUrlString:YTGoogleTokenURL
                                                      withParameters:queryData
                                                          responseIs:&response
@@ -158,7 +158,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         NSHTTPURLResponse *response;
         NSError *error = nil;
         
-        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_POST
+        NSDictionary *jsonAnswer = [YTCommonConnection jsonAnswerForRequestMethod:REST_METHOD_POST
                                                           withUrlString:YTGoogleTokenURL
                                                          withParameters:queryData
                                                              responseIs:&response
@@ -174,15 +174,6 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         
         completion(error);
     }
-}
-
-#pragma mark - Private methods - Fetch YouTube
-
-- (void)fetchPlaylistsCompletion:(void (^)(NSArray *playlists, NSError *error))completion {
-    
-}
-- (void)fetchChannelsCompletion:(void (^)(NSArray *channels, NSError *error))completion {
-    
 }
 
 #pragma mark - Public interface

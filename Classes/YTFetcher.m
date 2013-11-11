@@ -7,14 +7,21 @@
 //
 
 #import "YTFetcher.h"
-#import "YTCommon.h"
+#import "YTCommonConnection.h"
 #import "YTConnector.h"
+#import "YTPlaylistObject.h"
+
+#import "EasyMapping.h"
+#import "YTResponsePlaylistObject.h"
+#import "YTMappingProvider.h"
 
 static NSString *const YTOptionsKeyMine = @"mine";
 static NSString *const YTOptionsKeyPart = @"part";
 static NSString *const YTOptionsKeyMaxResults = @"maxResults";
 
 @implementation YTFetcher
+
+#pragma mark - Private methods
 
 + (NSString *)textOfPart:(YTRequestPart)part {
     NSString *partText;
@@ -35,10 +42,19 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
     
     return partText;
 }
-+ (NSArray *)makeArrayOfPlaylistsFromJSON:(NSDictionary *)jsonPlaylists {
-    return nil;
++ (void)addPart:(YTRequestPart)part toOptionsList:(NSMutableDictionary *)options {
+    NSString *partText = [self textOfPart:part];
+    if (partText) {
+        [options setObject:partText forKey:YTOptionsKeyPart];
+    }
 }
-+ (void)fetchPlaylistsWithOptions:(NSDictionary *)options blockCompletion:(void (^)(NSArray *, NSError *))completion {
++ (NSArray *)makeArrayOfPlaylistsFromJSON:(NSDictionary *)jsonPlaylists {
+    YTResponsePlaylistObject *responseObject = [EKMapper objectFromExternalRepresentation:jsonPlaylists
+                                                                              withMapping:[YTMappingProvider responsePlaylistMapping]];
+    
+    return responseObject.items;
+}
++ (NSDictionary *)fetchPlaylistsWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
     NSDictionary *resultOptions;
     if ([options objectForKey:YTOptionsKeyMine]) {
         resultOptions = options;
@@ -49,43 +65,60 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
         resultOptions = mutableOptions;
     }
     
-    NSString *optionsList = [YTCommon makeOptionsListFromOptions:resultOptions];
+    NSString *optionsList = [YTCommonConnection makeOptionsListFromOptions:resultOptions];
     NSString *url = [NSString stringWithFormat:@"%@?%@", YTAPIListPlaylistsURL, optionsList];
     
     NSString *accessToken = YTConnector.sharedInstance.accessToken;
     NSString *urlWithToken = [url stringByAppendingString:[NSString stringWithFormat:@"&access_token=%@", accessToken]];
     
     NSHTTPURLResponse *response;
+    NSDictionary *jsonAnswer = [YTCommonConnection jsonAnswerForRequestMethod:REST_METHOD_GET
+                                                                withUrlString:urlWithToken
+                                                               withParameters:nil
+                                                                   responseIs:&response
+                                                                      errorIs:error];
+    
+    return jsonAnswer;
+}
+
+#pragma mark - Public interface
+
++ (void)fetchPlaylistObjectsWithOptions:(NSDictionary *)options completion:(void (^)(NSArray *, NSError *))completion {
     NSError *error = nil;
-    
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
-                                                      withUrlString:urlWithToken
-                                                     withParameters:nil
-                                                         responseIs:&response
-                                                            errorIs:&error];
-    
+    NSDictionary *jsonAnswer = [self fetchPlaylistsWithOptions:options errorIs:&error];
     completion([self makeArrayOfPlaylistsFromJSON:jsonAnswer], error);
 }
-+ (void)fetchMinePlaylistsWithPart:(YTRequestPart)part blockCompletion:(void (^)(NSArray *, NSError *))completion {
++ (void)fetchMinePlaylistObjectsWithPart:(YTRequestPart)part completion:(void (^)(NSArray *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
+    [self addPart:part toOptionsList:options];
 
-    NSString *partText = [self textOfPart:part];
-    if (partText) {
-        [options setObject:partText forKey:YTOptionsKeyPart];
-    }
-
-    [self fetchPlaylistsWithOptions:options blockCompletion:completion];
+    [self fetchPlaylistObjectsWithOptions:options completion:completion];
 }
-+ (void)fetchMinePlaylistsNumber:(NSInteger)count withPart:(YTRequestPart)part blockCompletion:(void (^)(NSArray *, NSError *))completion {
++ (void)fetchMinePlaylistObjectsNumber:(NSUInteger)count withPart:(YTRequestPart)part completion:(void (^)(NSArray *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
     [options setObject:[NSNumber numberWithInteger:count] forKey:YTOptionsKeyMaxResults];
+    [self addPart:part toOptionsList:options];
 
-    NSString *partText = [self textOfPart:part];
-    if (partText) {
-        [options setObject:partText forKey:YTOptionsKeyPart];
-    }
+    [self fetchPlaylistObjectsWithOptions:options completion:completion];
+}
 
-    [self fetchPlaylistsWithOptions:options blockCompletion:completion];
++ (void)fetchPlaylistsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
+    NSError *error = nil;
+    NSDictionary *jsonAnswer = [self fetchPlaylistsWithOptions:options errorIs:&error];
+    completion(jsonAnswer, error);
+}
++ (void)fetchMinePlaylistsJsonWithPart:(YTRequestPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
+    NSMutableDictionary *options = [NSMutableDictionary dictionary];
+    [self addPart:part toOptionsList:options];
+    
+    [self fetchPlaylistsJsonWithOptions:options completion:completion];
+}
++ (void)fetchMinePlaylistsJsonNumber:(NSUInteger)count withPart:(YTRequestPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
+    NSMutableDictionary *options = [NSMutableDictionary dictionary];
+    [options setObject:[NSNumber numberWithInteger:count] forKey:YTOptionsKeyMaxResults];
+    [self addPart:part toOptionsList:options];
+    
+    [self fetchPlaylistsJsonWithOptions:options completion:completion];
 }
 
 @end
