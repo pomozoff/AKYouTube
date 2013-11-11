@@ -10,6 +10,7 @@
 #import "AKConstants.h"
 #import "YTFetcher.h"
 #import "YTCommonConnection.h"
+#import "YTPlaylistObject.h"
 
 @interface AKTableViewController ()
 
@@ -34,6 +35,13 @@
         [YTConnector.sharedInstance connectWithClientId:AKClientId andClientSecret:AKClientSecret];
         [self.refreshControl endRefreshing];
     }
+}
+
+#pragma mark - Properties
+
+- (void)setPlaylists:(NSArray *)playlists {
+    _playlists = playlists;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Actions
@@ -84,19 +92,19 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.playlists.count;
+    return self.playlists.count == 0 ? 0 : 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSDictionary *sectionObject = [self.playlists objectAtIndex:section];
-    NSArray *rows = sectionObject[@"rows"];
-    
-    return rows.count;
+    return self.playlists.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Playlist Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    YTPlaylistObject *playlist = self.playlists[indexPath.row];
+    cell.textLabel.text = playlist.title;
+    cell.detailTextLabel.text = playlist.itemDescription;
     
     return cell;
 }
