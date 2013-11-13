@@ -25,6 +25,13 @@ typedef enum {
     REQUEST_CHANNEL_PART_TOPIC_DETAILS
 } YTRequestChannelPart;
 
+typedef enum {
+    PLAYLIST_ITEMS_PART_ID,
+    PLAYLIST_ITEMS_PART_SNIPPET,
+    PLAYLIST_ITEMS_PART_CONTENT_DETAILS,
+    PLAYLIST_ITEMS_PART_STATUS
+} YTPlaylistItemsPart;
+
 @interface YTFetcher : NSObject
 
 + (void)fetchPlaylistsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion;
@@ -34,5 +41,7 @@ typedef enum {
 + (void)fetchChannelsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion;
 + (void)fetchMineChannelsJsonWithPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
 + (void)fetchMineChannelsJsonNumber:(NSUInteger)count withPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
+
++ (void)fetchItemsOfPlaylist:(NSString *)playlistId withPart:(YTPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
 
 @end

@@ -175,4 +175,8 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
     [self fetchChannelsJsonWithOptions:options completion:completion];
 }
 
++ (void)fetchItemsOfPlaylist:(NSString *)playlistId withPart:(YTPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
+    
+}
+
 @end
