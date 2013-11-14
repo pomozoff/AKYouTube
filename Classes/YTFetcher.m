@@ -121,6 +121,25 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
 
 #pragma mark - Public interface
 
++ (void)getUserInfoCompletion:(void(^)(NSDictionary *, NSError *))completion {
+    NSString *accessToken = YTConnector.sharedInstance.accessToken;
+    NSString *urlString = [NSString stringWithFormat:@"%@&access_token=%@",
+                           YTGoogleUserInfoURL, accessToken];
+    dispatch_queue_t connectQueue = dispatch_queue_create("YouTube get user info as JSON", NULL);
+    dispatch_async(connectQueue, ^{
+        NSHTTPURLResponse *response;
+        NSError *error = nil;
+        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+                                                          withUrlString:urlString
+                                                         withParameters:nil
+                                                             responseIs:&response
+                                                                errorIs:&error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(jsonAnswer, error);
+        });
+    });
+}
+
 + (void)fetchPlaylistsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
     dispatch_queue_t connectQueue = dispatch_queue_create("YouTube fetch playlists as JSON", NULL);
     dispatch_async(connectQueue, ^{
