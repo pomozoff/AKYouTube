@@ -267,9 +267,13 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 }
 + (void)fetchItemsNumber:(NSUInteger)number ofPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
+    [options setObject:playlistId forKey:YTOptionsKeyplaylistId];
     [options setObject:[NSNumber numberWithInteger:number] forKey:YTOptionsKeyMaxResults];
+
+    NSString *partText = [self textOfPlaylistItemsPart:part];
+    [self addPartText:partText toOptionsList:options];
     
-    [self fetchItemsOfPlaylist:playlistId withPart:part completion:completion];
+    [self fetchItemsOfPlaylistJsonWithOptions:options completion:completion];
 }
 + (void)fetchMaxItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
     [self fetchItemsNumber:YTOptionsValueMaxResults ofPlaylist:playlistId withPart:part completion:completion];
