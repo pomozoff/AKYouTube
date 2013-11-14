@@ -201,9 +201,9 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
     
     [self fetchPlaylistsJsonWithOptions:options completion:completion];
 }
-+ (void)fetchMinePlaylistsJsonNumber:(NSUInteger)count withPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchMinePlaylistsJsonNumber:(NSUInteger)number withPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
-    [options setObject:[NSNumber numberWithInteger:count] forKey:YTOptionsKeyMaxResults];
+    [options setObject:[NSNumber numberWithInteger:number] forKey:YTOptionsKeyMaxResults];
 
     NSString *partText = [self textOfPlaylistPart:part];
     [self addPartText:partText toOptionsList:options];
@@ -228,9 +228,9 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
     
     [self fetchChannelsJsonWithOptions:options completion:completion];
 }
-+ (void)fetchMineChannelsJsonNumber:(NSUInteger)count withPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchMineChannelsJsonNumber:(NSUInteger)number withPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
-    [options setObject:[NSNumber numberWithInteger:count] forKey:YTOptionsKeyMaxResults];
+    [options setObject:[NSNumber numberWithInteger:number] forKey:YTOptionsKeyMaxResults];
 
     NSString *partText = [self textOfChannelPart:part];
     [self addPartText:partText toOptionsList:options];
