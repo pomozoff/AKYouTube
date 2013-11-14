@@ -43,7 +43,7 @@
 + (instancetype)sharedInstance;
 
 - (void)connectWithClientId:(NSString *)clientId andClientSecret:(NSString *)clientSecret;
-- (void)authorizeAppWithScopesList:(NSString *)scopesList
+- (void)authorizeAppWithScopesList:(NSArray *)scopesArray
              inLoginViewController:(UIViewController<YTLoginViewControllerInterface> *)loginViewController;
 - (void)freeLoginViewController;
 - (void)getUserInfoWithBlockCompletion:(void(^)(NSDictionary *))completionBlock;

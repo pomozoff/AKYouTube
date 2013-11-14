@@ -114,6 +114,10 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     
     return isExpired;
 }
+- (NSString *)makeScopesListFromArray:(NSArray *)scopesArray {
+    NSString *scopesList = [scopesArray componentsJoinedByString:@" "];
+    return scopesList;
+}
 
 #pragma mark - Private methods - App auth
 
@@ -205,9 +209,9 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         }
     }
 }
-- (void)authorizeAppWithScopesList:(NSString *)scopesList
+- (void)authorizeAppWithScopesList:(NSArray *)scopesArray
              inLoginViewController:(UIViewController<YTLoginViewControllerInterface> *)loginViewController {
-    self.scopesList = scopesList;
+    self.scopesList = [self makeScopesListFromArray:scopesArray];
     self.loginController = loginViewController;
     
     if ([self.delegate respondsToSelector:@selector(presentLoginViewControler:)]) {
@@ -280,7 +284,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 }
 - (NSString *)scopesList {
     if (!_scopesList) {
-        _scopesList = [NSString stringWithFormat:@"%@/%@", YTScopeURL, YTScopeYouTubeReadOnly];
+        _scopesList = [self makeScopesListFromArray:@[YTScopeYouTubeReadOnly]];
     }
     
     return _scopesList;

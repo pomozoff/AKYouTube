@@ -15,11 +15,10 @@ static NSString *const YTGoogleOAuthURL    = @"https://accounts.google.com/o/oau
 static NSString *const YTGoogleTokenURL    = @"https://accounts.google.com/o/oauth2/token";
 static NSString *const YTGoogleUserInfoURL = @"https://www.googleapis.com/oauth2/v1/userinfo?alt=json";
 
-static NSString *const YTScopeURL = @"https://www.googleapis.com/auth";
-static NSString *const YTScopeYouTubeAccess   = @"youtube";
-static NSString *const YTScopeYouTubeReadOnly = @"youtube.readonly";
-static NSString *const YTScopeUserInfoProfile = @"userinfo.profile";
-static NSString *const YTScopeUserInfoEmail   = @"userinfo.email";
+static NSString *const YTScopeYouTubeAccess   = @"https://www.googleapis.com/auth/youtube";
+static NSString *const YTScopeYouTubeReadOnly = @"https://www.googleapis.com/auth/youtube.readonly";
+static NSString *const YTScopeUserInfoProfile = @"https://www.googleapis.com/auth/userinfo.profile";
+static NSString *const YTScopeUserInfoEmail   = @"https://www.googleapis.com/auth/userinfo.email";
 
 static NSString *const YTRedirectURI    = @"http://localhost/oauth2callback";
 
