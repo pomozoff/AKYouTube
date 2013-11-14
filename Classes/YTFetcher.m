@@ -13,6 +13,7 @@
 static NSString *const YTOptionsKeyMine = @"mine";
 static NSString *const YTOptionsKeyPart = @"part";
 static NSString *const YTOptionsKeyMaxResults = @"maxResults";
+static NSString *const YTOptionsKeyplaylistId = @"playlistId";
 
 @implementation YTFetcher
 
@@ -37,7 +38,6 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
     
     return partText;
 }
-
 + (NSString *)textOfChannelPart:(YTRequestChannelPart)part {
     NSString *partText;
     switch (part) {
@@ -72,6 +72,29 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
     
     return partText;
 }
++ (NSString *)textOfPlaylistItemsPart:(YTPlaylistItemsPart)part {
+    NSString *partText;
+    switch (part) {
+        case PLAYLIST_ITEMS_PART_ID:
+            partText = @"id";
+            break;
+        case PLAYLIST_ITEMS_PART_SNIPPET:
+            partText = @"snippet";
+            break;
+        case PLAYLIST_ITEMS_PART_CONTENT_DETAILS:
+            partText = @"status";
+            break;
+        case PLAYLIST_ITEMS_PART_STATUS:
+            partText = @"snippet";
+            break;
+            
+        default:
+            break;
+    }
+    
+    return partText;
+}
+
 + (void)addPartText:(NSString *)partText toOptionsList:(NSMutableDictionary *)options {
     if (partText) {
         [options setObject:partText forKey:YTOptionsKeyPart];
@@ -104,6 +127,17 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
                                                                withParameters:nil
                                                                    responseIs:&response
                                                                       errorIs:error];
+    
+    return jsonAnswer;
+}
++ (NSDictionary *)fetchPlaylistItemsWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
+    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListPlaylistItemsURL withOptions:options];
+    NSHTTPURLResponse *response;
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+                                                      withUrlString:urlWithToken
+                                                     withParameters:nil
+                                                         responseIs:&response
+                                                            errorIs:error];
     
     return jsonAnswer;
 }
@@ -204,8 +238,24 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
     [self fetchChannelsJsonWithOptions:options completion:completion];
 }
 
++ (void)fetchPlaylistItemsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
+    dispatch_queue_t connectQueue = dispatch_queue_create("YouTube fetch playlist items as JSON", NULL);
+    dispatch_async(connectQueue, ^{
+        NSError *error = nil;
+        NSDictionary *jsonAnswer = [self fetchPlaylistItemsWithOptions:options errorIs:&error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(jsonAnswer, error);
+        });
+    });
+}
 + (void)fetchItemsOfPlaylist:(NSString *)playlistId withPart:(YTPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
+    NSMutableDictionary *options = [NSMutableDictionary dictionary];
+    [options setObject:playlistId forKey:YTOptionsKeyplaylistId];
+
+    NSString *partText = [self textOfPlaylistItemsPart:part];
+    [self addPartText:partText toOptionsList:options];
     
+    [self fetchPlaylistItemsJsonWithOptions:options completion:completion];
 }
 
 @end
