@@ -238,7 +238,7 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
     [self fetchChannelsJsonWithOptions:options completion:completion];
 }
 
-+ (void)fetchPlaylistItemsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchItemsOfPlaylistJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
     dispatch_queue_t connectQueue = dispatch_queue_create("YouTube fetch playlist items as JSON", NULL);
     dispatch_async(connectQueue, ^{
         NSError *error = nil;
@@ -255,7 +255,7 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
     NSString *partText = [self textOfPlaylistItemsPart:part];
     [self addPartText:partText toOptionsList:options];
     
-    [self fetchPlaylistItemsJsonWithOptions:options completion:completion];
+    [self fetchItemsOfPlaylistJsonWithOptions:options completion:completion];
 }
 
 @end
