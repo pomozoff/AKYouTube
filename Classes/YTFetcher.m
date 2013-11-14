@@ -78,6 +78,15 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
     }
 }
 + (NSString *)makeUrlForTemplate:(NSString *)template withOptions:(NSDictionary *)options {
+    NSString *optionsList = [YTCommon makeOptionsListFromOptions:options];
+    NSString *url = [NSString stringWithFormat:@"%@?%@", template, optionsList];
+    
+    NSString *accessToken = YTConnector.sharedInstance.accessToken;
+    NSString *urlWithToken = [url stringByAppendingString:[NSString stringWithFormat:@"&access_token=%@", accessToken]];
+    
+    return urlWithToken;
+}
++ (NSDictionary *)fetchPlaylistsWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
     NSDictionary *resultOptions;
     if ([options objectForKey:YTOptionsKeyMine]) {
         resultOptions = options;
@@ -88,16 +97,7 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
         resultOptions = mutableOptions;
     }
     
-    NSString *optionsList = [YTCommon makeOptionsListFromOptions:resultOptions];
-    NSString *url = [NSString stringWithFormat:@"%@?%@", template, optionsList];
-    
-    NSString *accessToken = YTConnector.sharedInstance.accessToken;
-    NSString *urlWithToken = [url stringByAppendingString:[NSString stringWithFormat:@"&access_token=%@", accessToken]];
-    
-    return urlWithToken;
-}
-+ (NSDictionary *)fetchPlaylistsWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
-    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListPlaylistsURL withOptions:options];
+    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListPlaylistsURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
     NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
                                                                 withUrlString:urlWithToken
@@ -108,7 +108,17 @@ static NSString *const YTOptionsKeyMaxResults = @"maxResults";
     return jsonAnswer;
 }
 + (NSDictionary *)fetchChannelsWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
-    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListChannelsURL withOptions:options];
+    NSDictionary *resultOptions;
+    if ([options objectForKey:YTOptionsKeyMine]) {
+        resultOptions = options;
+    } else {
+        NSMutableDictionary *mutableOptions = [options mutableCopy];
+        [mutableOptions addEntriesFromDictionary:@{YTOptionsKeyMine : @"true"}];
+        
+        resultOptions = mutableOptions;
+    }
+    
+    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListChannelsURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
     NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
                                                                 withUrlString:urlWithToken
