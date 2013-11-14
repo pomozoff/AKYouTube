@@ -218,6 +218,26 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     self.loginController = nil;
     NSLog(@"Login controller freed ...");
 }
+- (void)getUserInfoWithBlockCompletion:(void(^)(NSDictionary *))completionBlock {
+    if (self.accessToken) {
+        NSString *urlString = [NSString stringWithFormat:@"%@&access_token=%@",
+                               YTGoogleUserInfoURL, self.accessToken];
+        NSHTTPURLResponse *response;
+        NSError *error = nil;
+        
+        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+                                                      withUrlString:urlString
+                                                     withParameters:nil
+                                                         responseIs:&response
+                                                            errorIs:&error];
+        
+        if (!error) {
+            if ( YTHttpResponseStatusOK == response.statusCode ) {
+                completionBlock(jsonAnswer);
+            }
+        }
+    }
+}
 
 #pragma mark - Properties
 
@@ -260,7 +280,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 }
 - (NSString *)scopesList {
     if (!_scopesList) {
-        _scopesList = YTDefaultScope;
+        _scopesList = [NSString stringWithFormat:@"%@/%@", YTScopeURL, YTScopeYouTubeReadOnly];
     }
     
     return _scopesList;

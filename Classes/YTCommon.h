@@ -11,9 +11,16 @@
 static NSString *const YTGrantTypeAuthCode     = @"authorization_code";
 static NSString *const YTGrantTypeRefreshToken = @"refresh_token";
 
-static NSString *const YTGoogleOAuthURL = @"https://accounts.google.com/o/oauth2/auth";
-static NSString *const YTGoogleTokenURL = @"https://accounts.google.com/o/oauth2/token";
-static NSString *const YTDefaultScope   = @"https://www.googleapis.com/auth/youtube.readonly";
+static NSString *const YTGoogleOAuthURL    = @"https://accounts.google.com/o/oauth2/auth";
+static NSString *const YTGoogleTokenURL    = @"https://accounts.google.com/o/oauth2/token";
+static NSString *const YTGoogleUserInfoURL = @"https://www.googleapis.com/oauth2/v1/userinfo?alt=json";
+
+static NSString *const YTScopeURL = @"https://www.googleapis.com/auth";
+static NSString *const YTScopeYouTubeAccess   = @"youtube";
+static NSString *const YTScopeYouTubeReadOnly = @"youtube.readonly";
+static NSString *const YTScopeUserInfoProfile = @"userinfo.profile";
+static NSString *const YTScopeUserInfoEmail   = @"userinfo.email";
+
 static NSString *const YTRedirectURI    = @"http://localhost/oauth2callback";
 
 static NSString *const YTAPIListChannelsURL  = @"https://www.googleapis.com/youtube/v3/channels";

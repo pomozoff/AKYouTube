@@ -46,5 +46,6 @@
 - (void)authorizeAppWithScopesList:(NSString *)scopesList
              inLoginViewController:(UIViewController<YTLoginViewControllerInterface> *)loginViewController;
 - (void)freeLoginViewController;
+- (void)getUserInfoWithBlockCompletion:(void(^)(NSDictionary *))completionBlock;
 
 @end
