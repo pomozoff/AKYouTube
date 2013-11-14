@@ -20,7 +20,7 @@ static NSString *const YTScopeYouTubeReadOnly = @"https://www.googleapis.com/aut
 static NSString *const YTScopeUserInfoProfile = @"https://www.googleapis.com/auth/userinfo.profile";
 static NSString *const YTScopeUserInfoEmail   = @"https://www.googleapis.com/auth/userinfo.email";
 
-static NSString *const YTRedirectURI    = @"http://localhost/oauth2callback";
+static NSString *const YTRedirectURI = @"http://localhost/oauth2callback";
 
 static NSString *const YTAPIListChannelsURL  = @"https://www.googleapis.com/youtube/v3/channels";
 static NSString *const YTAPIListPlaylistsURL = @"https://www.googleapis.com/youtube/v3/playlists";
