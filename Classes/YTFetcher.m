@@ -22,13 +22,13 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
 + (NSString *)textOfPlaylistPart:(YTRequestPlaylistPart)part {
     NSString *partText;
     switch (part) {
-        case REQUEST_PLAYLIST_PART_ID:
+        case YOUTUBE_REQUEST_PLAYLIST_PART_ID:
             partText = @"id";
             break;
-        case REQUEST_PLAYLIST_PART_SNIPPET:
+        case YOUTUBE_REQUEST_PLAYLIST_PART_SNIPPET:
             partText = @"snippet";
             break;
-        case REQUEST_PLAYLIST_PART_STATUS:
+        case YOUTUBE_REQUEST_PLAYLIST_PART_STATUS:
             partText = @"status";
             break;
             
@@ -41,28 +41,28 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
 + (NSString *)textOfChannelPart:(YTRequestChannelPart)part {
     NSString *partText;
     switch (part) {
-        case REQUEST_CHANNEL_PART_ID:
+        case YOUTUBE_REQUEST_CHANNEL_PART_ID:
             partText = @"id";
             break;
-        case REQUEST_CHANNEL_PART_SNIPPET:
+        case YOUTUBE_REQUEST_CHANNEL_PART_SNIPPET:
             partText = @"snippet";
             break;
-        case REQUEST_CHANNEL_PART_AUDIT_DETAILS:
+        case YOUTUBE_REQUEST_CHANNEL_PART_AUDIT_DETAILS:
             partText = @"auditDetails";
             break;
-        case REQUEST_CHANNEL_PART_BRANDING_SETTINGS:
+        case YOUTUBE_REQUEST_CHANNEL_PART_BRANDING_SETTINGS:
             partText = @"brandingSettings";
             break;
-        case REQUEST_CHANNEL_PART_CONTENT_DETAILS:
+        case YOUTUBE_REQUEST_CHANNEL_PART_CONTENT_DETAILS:
             partText = @"contentDetails";
             break;
-        case REQUEST_CHANNEL_PART_INVIDEO_PROMOTION:
+        case YOUTUBE_REQUEST_CHANNEL_PART_INVIDEO_PROMOTION:
             partText = @"invideoPromotion";
             break;
-        case REQUEST_CHANNEL_PART_STATISTICS:
+        case YOUTUBE_REQUEST_CHANNEL_PART_STATISTICS:
             partText = @"statistics";
             break;
-        case REQUEST_CHANNEL_PART_TOPIC_DETAILS:
+        case YOUTUBE_REQUEST_CHANNEL_PART_TOPIC_DETAILS:
             partText = @"topicDetails";
             break;
             
@@ -72,19 +72,19 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
     
     return partText;
 }
-+ (NSString *)textOfPlaylistItemsPart:(YTPlaylistItemsPart)part {
++ (NSString *)textOfPlaylistItemsPart:(YTRequestPlaylistItemsPart)part {
     NSString *partText;
     switch (part) {
-        case PLAYLIST_ITEMS_PART_ID:
+        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_ID:
             partText = @"id";
             break;
-        case PLAYLIST_ITEMS_PART_SNIPPET:
+        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_SNIPPET:
             partText = @"snippet";
             break;
-        case PLAYLIST_ITEMS_PART_CONTENT_DETAILS:
+        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_CONTENT_DETAILS:
             partText = @"status";
             break;
-        case PLAYLIST_ITEMS_PART_STATUS:
+        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_STATUS:
             partText = @"snippet";
             break;
             
@@ -248,7 +248,7 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
         });
     });
 }
-+ (void)fetchItemsOfPlaylist:(NSString *)playlistId withPart:(YTPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
     [options setObject:playlistId forKey:YTOptionsKeyplaylistId];
 
