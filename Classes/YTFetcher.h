@@ -39,13 +39,16 @@ typedef enum {
 + (void)fetchPlaylistsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion;
 + (void)fetchMinePlaylistsJsonWithPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
 + (void)fetchMinePlaylistsJsonNumber:(NSUInteger)number withPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchMaxMinePlaylistsJsonWithPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
 
 + (void)fetchChannelsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion;
 + (void)fetchMineChannelsJsonWithPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
 + (void)fetchMineChannelsJsonNumber:(NSUInteger)number withPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchMaxMineChannelsJsonWithPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
 
 + (void)fetchItemsOfPlaylistJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion;
 + (void)fetchItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
 + (void)fetchItemsNumber:(NSUInteger)number ofPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchMaxItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
 
 @end

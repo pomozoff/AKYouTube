@@ -15,6 +15,8 @@ static NSString *const YTOptionsKeyPart = @"part";
 static NSString *const YTOptionsKeyMaxResults = @"maxResults";
 static NSString *const YTOptionsKeyplaylistId = @"playlistId";
 
+static NSUInteger const YTOptionsValueMaxResults = 50;
+
 @implementation YTFetcher
 
 #pragma mark - Private methods
@@ -210,6 +212,9 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
     
     [self fetchPlaylistsJsonWithOptions:options completion:completion];
 }
++ (void)fetchMaxMinePlaylistsJsonWithPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
+    [self fetchMinePlaylistsJsonNumber:YTOptionsValueMaxResults withPart:part completion:completion];
+}
 
 + (void)fetchChannelsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
     dispatch_queue_t connectQueue = dispatch_queue_create("YouTube fetch channels as JSON", NULL);
@@ -237,6 +242,9 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
     
     [self fetchChannelsJsonWithOptions:options completion:completion];
 }
++ (void)fetchMaxMineChannelsJsonWithPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
+    [self fetchMineChannelsJsonNumber:YTOptionsValueMaxResults withPart:part completion:completion];
+}
 
 + (void)fetchItemsOfPlaylistJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
     dispatch_queue_t connectQueue = dispatch_queue_create("YouTube fetch playlist items as JSON", NULL);
@@ -262,6 +270,9 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
     [options setObject:[NSNumber numberWithInteger:number] forKey:YTOptionsKeyMaxResults];
     
     [self fetchItemsOfPlaylist:playlistId withPart:part completion:completion];
+}
++ (void)fetchMaxItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
+    [self fetchItemsNumber:YTOptionsValueMaxResults ofPlaylist:playlistId withPart:part completion:completion];
 }
 
 @end
