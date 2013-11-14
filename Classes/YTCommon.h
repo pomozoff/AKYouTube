@@ -22,8 +22,9 @@ static NSString *const YTScopeUserInfoEmail   = @"https://www.googleapis.com/aut
 
 static NSString *const YTRedirectURI = @"http://localhost/oauth2callback";
 
-static NSString *const YTAPIListChannelsURL  = @"https://www.googleapis.com/youtube/v3/channels";
-static NSString *const YTAPIListPlaylistsURL = @"https://www.googleapis.com/youtube/v3/playlists";
+static NSString *const YTAPIListChannelsURL      = @"https://www.googleapis.com/youtube/v3/channels";
+static NSString *const YTAPIListPlaylistsURL     = @"https://www.googleapis.com/youtube/v3/playlists";
+static NSString *const YTAPIListPlaylistItemsURL = @"https://www.googleapis.com/youtube/v3/playlistItems";
 
 static NSString *const YTDefaultsRefreshToken = @"ru.akademon.YTConnector.Defaults.RefreshToken";
 
