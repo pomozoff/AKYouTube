@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Akademon Ltd. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 static NSString *const YTGrantTypeAuthCode     = @"authorization_code";
 static NSString *const YTGrantTypeRefreshToken = @"refresh_token";
