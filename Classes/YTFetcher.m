@@ -257,5 +257,11 @@ static NSString *const YTOptionsKeyplaylistId = @"playlistId";
     
     [self fetchItemsOfPlaylistJsonWithOptions:options completion:completion];
 }
++ (void)fetchItemsNumber:(NSUInteger)number ofPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
+    NSMutableDictionary *options = [NSMutableDictionary dictionary];
+    [options setObject:[NSNumber numberWithInteger:number] forKey:YTOptionsKeyMaxResults];
+    
+    [self fetchItemsOfPlaylist:playlistId withPart:part completion:completion];
+}
 
 @end
