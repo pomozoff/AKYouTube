@@ -16,5 +16,5 @@
 #define COCOAPODS_POD_AVAILABLE_EasyMapping
 #define COCOAPODS_VERSION_MAJOR_EasyMapping 0
 #define COCOAPODS_VERSION_MINOR_EasyMapping 4
-#define COCOAPODS_VERSION_PATCH_EasyMapping 8
+#define COCOAPODS_VERSION_PATCH_EasyMapping 9
 
