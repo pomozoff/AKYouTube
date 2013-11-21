@@ -28,6 +28,13 @@ static NSString *const YTAPIListPlaylistItemsURL = @"https://www.googleapis.com/
 
 static NSString *const YTDefaultsRefreshToken = @"ru.akademon.YTConnector.Defaults.RefreshToken";
 
+static NSString *const YTQueueRefreshAccessToken = @"ru.akademon.YTConnector.Queue.RefreshAccessToken";
+static NSString *const YTQueueExchangeAuthCode   = @"ru.akademon.YTConnector.Queue.ExchangeAuthCode";
+static NSString *const YTQueueGetUserInfo        = @"ru.akademon.YTConnector.Queue.GetUserInfo";
+static NSString *const YTQueueFetchPlaylists     = @"ru.akademon.YTConnector.Queue.FetchPlaylists";
+static NSString *const YTQueueFetchChannels      = @"ru.akademon.YTConnector.Queue.FetchCjannels";
+static NSString *const YTQueueFetchPlaylistItem  = @"ru.akademon.YTConnector.Queue.FetchPlaylistItem";
+
 static NSInteger const YTHttpResponseStatusOK = 200;
 static NSUInteger const YTTimeoutSeconds = 30;
 static NSInteger const YTMaxItemsFetch = 50;

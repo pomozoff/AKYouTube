@@ -171,7 +171,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     NSString *accessToken = YTConnector.sharedInstance.accessToken;
     NSString *urlString = [NSString stringWithFormat:@"%@&access_token=%@",
                            YTGoogleUserInfoURL, accessToken];
-    dispatch_queue_t connectQueue = dispatch_queue_create("YouTube get user info as JSON", NULL);
+    dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueGetUserInfo UTF8String], NULL);
     dispatch_async(connectQueue, ^{
         NSHTTPURLResponse *response;
         NSError *error = nil;
@@ -187,7 +187,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 }
 
 + (void)fetchPlaylistsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
-    dispatch_queue_t connectQueue = dispatch_queue_create("YouTube fetch playlists as JSON", NULL);
+    dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueFetchPlaylists UTF8String], NULL);
     dispatch_async(connectQueue, ^{
         NSError *error = nil;
         NSDictionary *jsonAnswer = [self fetchPlaylistsWithOptions:options errorIs:&error];
@@ -217,7 +217,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 }
 
 + (void)fetchChannelsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
-    dispatch_queue_t connectQueue = dispatch_queue_create("YouTube fetch channels as JSON", NULL);
+    dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueFetchChannels UTF8String], NULL);
     dispatch_async(connectQueue, ^{
         NSError *error = nil;
         NSDictionary *jsonAnswer = [self fetchChannelsWithOptions:options errorIs:&error];
@@ -247,7 +247,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 }
 
 + (void)fetchItemsOfPlaylistJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
-    dispatch_queue_t connectQueue = dispatch_queue_create("YouTube fetch playlist items as JSON", NULL);
+    dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueFetchPlaylistItem UTF8String], NULL);
     dispatch_async(connectQueue, ^{
         NSError *error = nil;
         NSDictionary *jsonAnswer = [self fetchPlaylistItemsWithOptions:options errorIs:&error];

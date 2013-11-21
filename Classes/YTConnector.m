@@ -196,7 +196,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     self.clientSecret = clientSecret;
     
     if (self.refreshToken) {
-        dispatch_queue_t connectQueue = dispatch_queue_create("YouTube refresh access token queue", NULL);
+        dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueRefreshAccessToken UTF8String], NULL);
         dispatch_async(connectQueue, ^{
             [self refreshAccessTokenWithCompletion:^(NSError *error) {
                 __weak YTConnector *selfWeak = self;
@@ -285,7 +285,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     if (isRedirectUriFound) {
         NSString *authCode = [self distinguishAuthCodeFromQuery:request.URL.query];
         if (authCode) {
-            dispatch_queue_t connectQueue = dispatch_queue_create("YouTube exchange auth code queue", NULL);
+            dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueExchangeAuthCode UTF8String], NULL);
             dispatch_async(connectQueue, ^{
                 [self exchangeAuthCodeForAccessAndRefreshTokens:authCode withCompletion:^(NSError *error) {
                     __weak YTConnector *selfWeak = self;
