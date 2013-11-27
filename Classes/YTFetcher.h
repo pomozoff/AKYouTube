@@ -34,7 +34,7 @@ typedef NS_ENUM(NSInteger, YTRequestPlaylistItemsPart) {
 
 @interface YTFetcher : NSObject
 
-+ (void)getUserInfoCompletion:(void(^)(NSDictionary *, NSError *))completion;
++ (void)fetchUserInfoCompletion:(void(^)(NSDictionary *, NSError *))completion;
 
 + (void)fetchPlaylistsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion;
 + (void)fetchMinePlaylistsJsonWithPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion;

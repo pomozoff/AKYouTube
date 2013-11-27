@@ -167,7 +167,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 
 #pragma mark - Public interface
 
-+ (void)getUserInfoCompletion:(void(^)(NSDictionary *, NSError *))completion {
++ (void)fetchUserInfoCompletion:(void(^)(NSDictionary *, NSError *))completion {
     NSString *accessToken = [YTConnector sharedInstance].accessToken;
     NSString *urlString = [NSString stringWithFormat:@"%@&access_token=%@",
                            YTGoogleUserInfoURL, accessToken];
