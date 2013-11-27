@@ -20,7 +20,7 @@
     
     return [optionsArray componentsJoinedByString:@"&"];
 }
-+ (NSDictionary *)jsonAnswerForRequestMethod:(RestMethod)method
++ (NSDictionary *)jsonAnswerForRequestMethod:(YTRestMethod)method
                                withUrlString:(NSString *)urlString
                               withParameters:(NSDictionary *)parameters
                                   responseIs:(NSHTTPURLResponse **)response

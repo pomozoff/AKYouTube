@@ -51,7 +51,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 #pragma mark - Private methods - Others
 
 - (void)networkActivityIndicatorIsVisible:(BOOL)isVisible {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:isVisible];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = isVisible;
 }
 - (void)scaleLoadedPageToWidth {
     // Fix Google's storm in the minds
@@ -183,13 +183,14 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 #pragma mark - Public interface
 
 + (instancetype)sharedInstance {
-    static dispatch_once_t once;
-    static id _sharedInstance = nil;
-    dispatch_once(&once, ^{
-        _sharedInstance = [[self alloc] init];
+    static id sharedInstance = nil;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
     });
     
-    return _sharedInstance;
+    return sharedInstance;
 }
 - (void)connectWithClientId:(NSString *)clientId andClientSecret:(NSString *)clientSecret {
     self.clientId     = clientId;

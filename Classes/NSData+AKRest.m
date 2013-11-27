@@ -49,7 +49,7 @@
                                                             timeoutInterval:TIMEOUT_INTERVAL];
 	request.HTTPMethod = method;
     
-    if ( parameters != nil ) {
+    if (parameters) {
         NSMutableString *httpBody = [NSMutableString new];
         
         for ( NSString *key in parameters )

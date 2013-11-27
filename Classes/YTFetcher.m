@@ -10,10 +10,10 @@
 #import "YTCommon.h"
 #import "YTConnector.h"
 
-static NSString *const YTOptionsKeyMine = @"mine";
-static NSString *const YTOptionsKeyPart = @"part";
-static NSString *const YTOptionsKeyMaxResults = @"maxResults";
-static NSString *const YTOptionsKeyplaylistId = @"playlistId";
+static NSString * const YTOptionsKeyMine = @"mine";
+static NSString * const YTOptionsKeyPart = @"part";
+static NSString * const YTOptionsKeyMaxResults = @"maxResults";
+static NSString * const YTOptionsKeyplaylistId = @"playlistId";
 
 static NSUInteger const YTOptionsValueMaxResults = 50;
 
@@ -106,7 +106,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     NSString *optionsList = [YTCommon makeOptionsListFromOptions:options];
     NSString *url = [NSString stringWithFormat:@"%@?%@", template, optionsList];
     
-    NSString *accessToken = YTConnector.sharedInstance.accessToken;
+    NSString *accessToken = [YTConnector sharedInstance].accessToken;
     NSString *urlWithToken = [url stringByAppendingString:[NSString stringWithFormat:@"&access_token=%@", accessToken]];
     
     return urlWithToken;
@@ -168,7 +168,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 #pragma mark - Public interface
 
 + (void)getUserInfoCompletion:(void(^)(NSDictionary *, NSError *))completion {
-    NSString *accessToken = YTConnector.sharedInstance.accessToken;
+    NSString *accessToken = [YTConnector sharedInstance].accessToken;
     NSString *urlString = [NSString stringWithFormat:@"%@&access_token=%@",
                            YTGoogleUserInfoURL, accessToken];
     dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueGetUserInfo UTF8String], NULL);
