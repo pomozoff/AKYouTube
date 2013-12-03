@@ -8,28 +8,43 @@
 
 @import Foundation;
 
-typedef NS_ENUM(NSInteger, YTRequestPlaylistPart) {
-    YOUTUBE_REQUEST_PLAYLIST_PART_ID,
-    YOUTUBE_REQUEST_PLAYLIST_PART_SNIPPET,
-    YOUTUBE_REQUEST_PLAYLIST_PART_STATUS
+typedef NS_ENUM(NSInteger, YTRequestPlaylistsList) {
+    YT_REQUEST_PLAYLISTS_LIST_ID,
+    YT_REQUEST_PLAYLISTS_LIST_SNIPPET,
+    YT_REQUEST_PLAYLISTS_LIST_STATUS
 };
 
-typedef NS_ENUM(NSInteger, YTRequestChannelPart) {
-    YOUTUBE_REQUEST_CHANNEL_PART_ID,
-    YOUTUBE_REQUEST_CHANNEL_PART_SNIPPET,
-    YOUTUBE_REQUEST_CHANNEL_PART_AUDIT_DETAILS,
-    YOUTUBE_REQUEST_CHANNEL_PART_BRANDING_SETTINGS,
-    YOUTUBE_REQUEST_CHANNEL_PART_CONTENT_DETAILS,
-    YOUTUBE_REQUEST_CHANNEL_PART_INVIDEO_PROMOTION,
-    YOUTUBE_REQUEST_CHANNEL_PART_STATISTICS,
-    YOUTUBE_REQUEST_CHANNEL_PART_TOPIC_DETAILS
+typedef NS_ENUM(NSInteger, YTRequestChannelsList) {
+    YT_REQUEST_CHANNELS_LIST_ID,
+    YT_REQUEST_CHANNELS_LIST_SNIPPET,
+    YT_REQUEST_CHANNELS_LIST_AUDIT_DETAILS,
+    YT_REQUEST_CHANNELS_LIST_BRANDING_SETTINGS,
+    YT_REQUEST_CHANNELS_LIST_CONTENT_DETAILS,
+    YT_REQUEST_CHANNELS_LIST_INVIDEO_PROMOTION,
+    YT_REQUEST_CHANNELS_LIST_STATISTICS,
+    YT_REQUEST_CHANNELS_LIST_TOPIC_DETAILS
 };
 
-typedef NS_ENUM(NSInteger, YTRequestPlaylistItemsPart) {
-    YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_ID,
-    YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_SNIPPET,
-    YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_CONTENT_DETAILS,
-    YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_STATUS
+typedef NS_ENUM(NSInteger, YTRequestPlaylistItemsList) {
+    YT_REQUEST_PLAYLIST_ITEMS_LIST_ID,
+    YT_REQUEST_PLAYLIST_ITEMS_LIST_SNIPPET,
+    YT_REQUEST_PLAYLIST_ITEMS_LIST_CONTENT_DETAILS,
+    YT_REQUEST_PLAYLIST_ITEMS_LIST_STATUS
+};
+
+typedef NS_ENUM(NSInteger, YTRequestVideosList) {
+    YT_REQUEST_VIDEOS_LIST_ID,
+    YT_REQUEST_VIDEOS_LIST_SNIPPET,
+    YT_REQUEST_VIDEOS_LIST_CONTENT_DETAILS,
+    YT_REQUEST_VIDEOS_LIST_FILE_DETAILS,
+    YT_REQUEST_VIDEOS_LIST_LIVE_STREAMING_DETAILS,
+    YT_REQUEST_VIDEOS_LIST_PLAYER,
+    YT_REQUEST_VIDEOS_LIST_PROCESSING_DETAILS,
+    YT_REQUEST_VIDEOS_LIST_RECORDING_DETAILS,
+    YT_REQUEST_VIDEOS_LIST_STATISTICS,
+    YT_REQUEST_VIDEOS_LIST_STATUS,
+    YT_REQUEST_VIDEOS_LIST_SUGGESTIONS,
+    YT_REQUEST_VIDEOS_LIST_TOPIC_DETAILS
 };
 
 @interface YTFetcher : NSObject
@@ -37,18 +52,21 @@ typedef NS_ENUM(NSInteger, YTRequestPlaylistItemsPart) {
 + (void)fetchUserInfoCompletion:(void(^)(NSDictionary *, NSError *))completion;
 
 + (void)fetchPlaylistsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion;
-+ (void)fetchMinePlaylistsJsonWithPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
-+ (void)fetchMinePlaylistsJsonNumber:(NSUInteger)number withPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
-+ (void)fetchMaxMinePlaylistsJsonWithPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchMinePlaylistsJsonWithPart:(YTRequestPlaylistsList)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchMinePlaylistsJsonNumber:(NSUInteger)number withPart:(YTRequestPlaylistsList)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchMaxMinePlaylistsJsonWithPart:(YTRequestPlaylistsList)part completion:(void (^)(NSDictionary *, NSError *))completion;
 
 + (void)fetchChannelsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion;
-+ (void)fetchMineChannelsJsonWithPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
-+ (void)fetchMineChannelsJsonNumber:(NSUInteger)number withPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
-+ (void)fetchMaxMineChannelsJsonWithPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchMineChannelsJsonWithPart:(YTRequestChannelsList)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchMineChannelsJsonNumber:(NSUInteger)number withPart:(YTRequestChannelsList)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchMaxMineChannelsJsonWithPart:(YTRequestChannelsList)part completion:(void (^)(NSDictionary *, NSError *))completion;
 
 + (void)fetchItemsOfPlaylistJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion;
-+ (void)fetchItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
-+ (void)fetchItemsNumber:(NSUInteger)number ofPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
-+ (void)fetchMaxItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsList)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchItemsNumber:(NSUInteger)number ofPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsList)part completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchMaxItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsList)part completion:(void (^)(NSDictionary *, NSError *))completion;
+
++ (void)fetchVideosListJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion;
++ (void)fetchVideosListContentDetailForArrayOfVideoIds:(NSArray *)arrayOfIds completion:(void (^)(NSDictionary *, NSError *))completion;
 
 @end
