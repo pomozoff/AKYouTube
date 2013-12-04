@@ -170,7 +170,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
         resultOptions = mutableOptions;
     }
     
-    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListPlaylistsURL withOptions:resultOptions];
+    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIPlaylistsListURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
     NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
                                                                 withUrlString:urlWithToken
@@ -191,7 +191,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
         resultOptions = mutableOptions;
     }
     
-    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListChannelsURL withOptions:resultOptions];
+    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIChannelsListURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
     NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
                                                                 withUrlString:urlWithToken
@@ -202,7 +202,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     return jsonAnswer;
 }
 + (NSDictionary *)fetchPlaylistItemsListWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
-    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListPlaylistItemsURL withOptions:options];
+    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIPlaylistItemsListURL withOptions:options];
     NSHTTPURLResponse *response;
     NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
                                                       withUrlString:urlWithToken
@@ -223,7 +223,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
         resultOptions = mutableOptions;
     }
     
-    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListPlaylistsURL withOptions:resultOptions];
+    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIVideosListURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
     NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
                                                       withUrlString:urlWithToken
