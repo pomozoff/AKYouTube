@@ -159,7 +159,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     return urlWithToken;
 }
 
-+ (NSDictionary *)fetchPlaylistsListWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
++ (NSDictionary *)fetchPlaylistsListWithOptions:(NSDictionary *)options error:(NSError **)error {
     NSDictionary *resultOptions;
     if ([options objectForKey:YTOptionsKeyMine]) {
         resultOptions = options;
@@ -173,14 +173,14 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     NSString *urlWithToken = [self makeUrlForTemplate:YTAPIPlaylistsListURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
     NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
-                                                                withUrlString:urlWithToken
-                                                               withParameters:nil
-                                                                   responseIs:&response
-                                                                      errorIs:error];
+                                                      withUrlString:urlWithToken
+                                                     withParameters:nil
+                                                           response:&response
+                                                              error:error];
     
     return jsonAnswer;
 }
-+ (NSDictionary *)fetchChannelsListWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
++ (NSDictionary *)fetchChannelsListWithOptions:(NSDictionary *)options error:(NSError **)error {
     NSDictionary *resultOptions;
     if ([options objectForKey:YTOptionsKeyMine]) {
         resultOptions = options;
@@ -194,25 +194,25 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     NSString *urlWithToken = [self makeUrlForTemplate:YTAPIChannelsListURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
     NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
-                                                                withUrlString:urlWithToken
-                                                               withParameters:nil
-                                                                   responseIs:&response
-                                                                      errorIs:error];
+                                                      withUrlString:urlWithToken
+                                                     withParameters:nil
+                                                           response:&response
+                                                              error:error];
     
     return jsonAnswer;
 }
-+ (NSDictionary *)fetchPlaylistItemsListWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
++ (NSDictionary *)fetchPlaylistItemsListWithOptions:(NSDictionary *)options error:(NSError **)error {
     NSString *urlWithToken = [self makeUrlForTemplate:YTAPIPlaylistItemsListURL withOptions:options];
     NSHTTPURLResponse *response;
     NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
                                                       withUrlString:urlWithToken
                                                      withParameters:nil
-                                                         responseIs:&response
-                                                            errorIs:error];
+                                                           response:&response
+                                                              error:error];
     
     return jsonAnswer;
 }
-+ (NSDictionary *)fetchVideosListWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
++ (NSDictionary *)fetchVideosListWithOptions:(NSDictionary *)options error:(NSError **)error {
     NSDictionary *resultOptions;
     if ([options objectForKey:YTOptionsKeyMine]) {
         resultOptions = options;
@@ -228,8 +228,8 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
                                                       withUrlString:urlWithToken
                                                      withParameters:nil
-                                                         responseIs:&response
-                                                            errorIs:error];
+                                                           response:&response
+                                                              error:error];
     
     return jsonAnswer;
 }
@@ -247,8 +247,8 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
         NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
                                                           withUrlString:urlString
                                                          withParameters:nil
-                                                             responseIs:&response
-                                                                errorIs:&error];
+                                                               response:&response
+                                                                  error:&error];
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(jsonAnswer, error);
         });
