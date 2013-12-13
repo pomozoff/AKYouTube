@@ -172,7 +172,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     
     NSString *urlWithToken = [self makeUrlForTemplate:YTAPIPlaylistsListURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
                                                                 withUrlString:urlWithToken
                                                                withParameters:nil
                                                                    responseIs:&response
@@ -193,7 +193,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     
     NSString *urlWithToken = [self makeUrlForTemplate:YTAPIChannelsListURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
                                                                 withUrlString:urlWithToken
                                                                withParameters:nil
                                                                    responseIs:&response
@@ -204,7 +204,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 + (NSDictionary *)fetchPlaylistItemsListWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
     NSString *urlWithToken = [self makeUrlForTemplate:YTAPIPlaylistItemsListURL withOptions:options];
     NSHTTPURLResponse *response;
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
                                                       withUrlString:urlWithToken
                                                      withParameters:nil
                                                          responseIs:&response
@@ -225,7 +225,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     
     NSString *urlWithToken = [self makeUrlForTemplate:YTAPIVideosListURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
                                                       withUrlString:urlWithToken
                                                      withParameters:nil
                                                          responseIs:&response
@@ -244,7 +244,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     dispatch_async(connectQueue, ^{
         NSHTTPURLResponse *response;
         NSError *error = nil;
-        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
                                                           withUrlString:urlString
                                                          withParameters:nil
                                                              responseIs:&response
