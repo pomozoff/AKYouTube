@@ -53,10 +53,15 @@ typedef NS_ENUM(NSInteger, YTRestMethod) {
 @interface YTCommon : NSObject
 
 + (NSString *)makeOptionsListFromOptions:(NSDictionary *)options;
++ (NSData *)dataAnswerForRequestMethod:(YTRestMethod)method
+                         withUrlString:(NSString *)urlString
+                        withParameters:(NSDictionary *)parameters
+                              response:(NSHTTPURLResponse **)response
+                                 error:(NSError **)error;
 + (NSDictionary *)jsonAnswerForRequestMethod:(YTRestMethod)method
                                withUrlString:(NSString *)urlString
                               withParameters:(NSDictionary *)parameters
-                                  responseIs:(NSHTTPURLResponse **)response
-                                     errorIs:(NSError **)error;
+                                    response:(NSHTTPURLResponse **)response
+                                       error:(NSError **)error;
 
 @end

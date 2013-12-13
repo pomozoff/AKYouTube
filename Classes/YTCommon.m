@@ -20,11 +20,11 @@
     
     return [optionsArray componentsJoinedByString:@"&"];
 }
-+ (NSDictionary *)jsonAnswerForRequestMethod:(YTRestMethod)method
-                               withUrlString:(NSString *)urlString
-                              withParameters:(NSDictionary *)parameters
-                                  responseIs:(NSHTTPURLResponse **)response
-                                     errorIs:(NSError **)error {
++ (NSData *)dataAnswerForRequestMethod:(YTRestMethod)method
+                         withUrlString:(NSString *)urlString
+                        withParameters:(NSDictionary *)parameters
+                              response:(NSHTTPURLResponse **)response
+                                 error:(NSError **)error {
     NSString *methodString;
     switch (method) {
         case YT_REST_METHOD_GET:
@@ -43,6 +43,19 @@
                           withParameters:parameters
                             httpResponse:response
                                    error:error];
+    
+    return data;
+}
++ (NSDictionary *)jsonAnswerForRequestMethod:(YTRestMethod)method
+                               withUrlString:(NSString *)urlString
+                              withParameters:(NSDictionary *)parameters
+                                    response:(NSHTTPURLResponse **)response
+                                       error:(NSError **)error {
+    NSData *data = [self dataAnswerForRequestMethod:method
+                                      withUrlString:urlString
+                                     withParameters:parameters
+                                           response:response
+                                              error:error];
     
     NSDictionary *jsonAnswer;
     if ( !(*error) ) {
