@@ -243,7 +243,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueGetUserInfo UTF8String], NULL);
     dispatch_async(connectQueue, ^{
         NSHTTPURLResponse *response;
-        NSError *error = nil;
+        NSError *error;
         NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
                                                           withUrlString:urlString
                                                          withParameters:nil

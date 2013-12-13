@@ -93,7 +93,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     [loginController.webView loadRequest:[self makeLoginURLRequest]];
 }
 - (NSString *)distinguishAuthCodeFromQuery:(NSString *)query {
-    NSString *authCode = nil;
+    NSString *authCode;
     
     NSArray *queryParts = [query componentsSeparatedByString:@"="];
     if ( (queryParts.count == 2) && ([[queryParts objectAtIndex:0] isEqualToString:@"code"]) ) {
