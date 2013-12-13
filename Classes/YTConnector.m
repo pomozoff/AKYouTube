@@ -136,9 +136,8 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_POST
                                                       withUrlString:YTGoogleTokenURL
                                                      withParameters:queryData
-                                                         responseIs:&response
-                                                            errorIs:&error];
-    
+                                                           response:&response
+                                                              error:&error];
     if (!error) {
         if ( YTHttpResponseStatusOK == response.statusCode ) {
             self.expiresIn    = jsonAnswer[@"expires_in"];
@@ -165,9 +164,8 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_POST
                                                           withUrlString:YTGoogleTokenURL
                                                          withParameters:queryData
-                                                             responseIs:&response
-                                                                errorIs:&error];
-        
+                                                               response:&response
+                                                                  error:&error];
         if (!error) {
             if ( YTHttpResponseStatusOK == response.statusCode ) {
                 self.expiresIn   = jsonAnswer[@"expires_in"];
