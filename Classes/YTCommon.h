@@ -46,8 +46,8 @@ static NSUInteger const YTWebViewHorizontalMargin = 30;
 static NSUInteger const YTWebViewVerticalMargin   = 44;
 
 typedef NS_ENUM(NSInteger, YTRestMethod) {
-    YT_REST_METHOD_POST,
-    YT_REST_METHOD_GET
+    AKRestMethodPost,
+    AKRestMethodGet
 };
 
 @interface YTCommon : NSObject

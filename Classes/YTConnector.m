@@ -133,7 +133,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 	NSHTTPURLResponse *response;
     NSError *error = nil;
     
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_POST
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:AKRestMethodPost
                                                       withUrlString:YTGoogleTokenURL
                                                      withParameters:queryData
                                                            response:&response
@@ -161,7 +161,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         NSHTTPURLResponse *response;
         NSError *error = nil;
         
-        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_POST
+        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:AKRestMethodPost
                                                           withUrlString:YTGoogleTokenURL
                                                          withParameters:queryData
                                                                response:&response

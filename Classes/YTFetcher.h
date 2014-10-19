@@ -9,42 +9,42 @@
 @import Foundation;
 
 typedef NS_ENUM(NSInteger, YTRequestPlaylistsList) {
-    YT_REQUEST_PLAYLISTS_LIST_ID,
-    YT_REQUEST_PLAYLISTS_LIST_SNIPPET,
-    YT_REQUEST_PLAYLISTS_LIST_STATUS
+    AKYouTubeRequestPlaylistsListId,
+    AKYouTubeRequestPlaylistsListSnippet,
+    AKYouTubeRequestPlaylistsListStatus
 };
 
 typedef NS_ENUM(NSInteger, YTRequestChannelsList) {
-    YT_REQUEST_CHANNELS_LIST_ID,
-    YT_REQUEST_CHANNELS_LIST_SNIPPET,
-    YT_REQUEST_CHANNELS_LIST_AUDIT_DETAILS,
-    YT_REQUEST_CHANNELS_LIST_BRANDING_SETTINGS,
-    YT_REQUEST_CHANNELS_LIST_CONTENT_DETAILS,
-    YT_REQUEST_CHANNELS_LIST_INVIDEO_PROMOTION,
-    YT_REQUEST_CHANNELS_LIST_STATISTICS,
-    YT_REQUEST_CHANNELS_LIST_TOPIC_DETAILS
+    AKYouTubeRequestChannelsListId,
+    AKYouTubeRequestChannelsListSnippet,
+    AKYouTubeRequestChannelsListAuditDetails,
+    AKYouTubeRequestChannelsListBrandingSettings,
+    AKYouTubeRequestChannelsListContentDetails,
+    AKYouTubeRequestChannelsListInvideoPromotion,
+    AKYouTubeRequestChannelsListStatistics,
+    AKYouTubeRequestChannelsListTopicDetails
 };
 
 typedef NS_ENUM(NSInteger, YTRequestPlaylistItemsList) {
-    YT_REQUEST_PLAYLIST_ITEMS_LIST_ID,
-    YT_REQUEST_PLAYLIST_ITEMS_LIST_SNIPPET,
-    YT_REQUEST_PLAYLIST_ITEMS_LIST_CONTENT_DETAILS,
-    YT_REQUEST_PLAYLIST_ITEMS_LIST_STATUS
+    AKYouTubeRequestPlaylistItemsListId,
+    AKYouTubeRequestPlaylistItemsListSnippet,
+    AKYouTubeRequestPlaylistItemsListContentDetails,
+    AKYouTubeRequestPlaylistItemsListStatus
 };
 
 typedef NS_ENUM(NSInteger, YTRequestVideosList) {
-    YT_REQUEST_VIDEOS_LIST_ID,
-    YT_REQUEST_VIDEOS_LIST_SNIPPET,
-    YT_REQUEST_VIDEOS_LIST_CONTENT_DETAILS,
-    YT_REQUEST_VIDEOS_LIST_FILE_DETAILS,
-    YT_REQUEST_VIDEOS_LIST_LIVE_STREAMING_DETAILS,
-    YT_REQUEST_VIDEOS_LIST_PLAYER,
-    YT_REQUEST_VIDEOS_LIST_PROCESSING_DETAILS,
-    YT_REQUEST_VIDEOS_LIST_RECORDING_DETAILS,
-    YT_REQUEST_VIDEOS_LIST_STATISTICS,
-    YT_REQUEST_VIDEOS_LIST_STATUS,
-    YT_REQUEST_VIDEOS_LIST_SUGGESTIONS,
-    YT_REQUEST_VIDEOS_LIST_TOPIC_DETAILS
+    AKYouTubeRequestVideosListId,
+    AKYouTubeRequestVideosListSnippet,
+    AKYouTubeRequestVideosListContentDetails,
+    AKYouTubeRequestVideosListFileDetails,
+    AKYouTubeRequestVideosListLiveStreamingDetails,
+    AKYouTubeRequestVideosListPlayer,
+    AKYouTubeRequestVideosListProcessingDetails,
+    AKYouTubeRequestVideosListRecordingDetails,
+    AKYouTubeRequestVideosListStatistics,
+    AKYouTubeRequestVideosListStatus,
+    AKYouTubeRequestVideosListSuggestions,
+    AKYouTubeRequestVideosListTopicDetails
 };
 
 @interface YTFetcher : NSObject
