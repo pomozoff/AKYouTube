@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary               = "Simple REST client to YouTube v3 API"
   s.homepage              = "https://github.com/pomozoff/AKYouTube"
   s.license               = { :type => 'MIT', :file => 'LICENSE' }
-  s.author                = { "Anton Pomozov" => "pomozoff@gmail.com" }
+  s.author                = { "Anton Pomozov" => "pomozoff@me.com" }
   s.platform              = :ios, '7.0'
   s.ios.deployment_target = '7.0'
   s.source                = { :git => "https://github.com/pomozoff/AKYouTube.git", :tag => s.version.to_s }
