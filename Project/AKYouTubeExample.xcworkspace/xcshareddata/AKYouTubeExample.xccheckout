@@ -10,29 +10,29 @@
 	<string>AKYouTubeExample</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C09DDE4B-6E38-493B-A1D5-FFA1B3B862B3</key>
+		<key>F30FDAC1098B03850617FA7789FC772C5837094E</key>
 		<string>ssh://github.com/pomozoff/AKYouTube.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Project/AKYouTubeExample.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C09DDE4B-6E38-493B-A1D5-FFA1B3B862B3</key>
+		<key>F30FDAC1098B03850617FA7789FC772C5837094E</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/pomozoff/AKYouTube.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C09DDE4B-6E38-493B-A1D5-FFA1B3B862B3</string>
+	<string>F30FDAC1098B03850617FA7789FC772C5837094E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C09DDE4B-6E38-493B-A1D5-FFA1B3B862B3</string>
+			<string>F30FDAC1098B03850617FA7789FC772C5837094E</string>
 			<key>IDESourceControlWCCName</key>
 			<string>AKYouTube</string>
 		</dict>
