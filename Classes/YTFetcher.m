@@ -10,10 +10,11 @@
 #import "YTCommon.h"
 #import "YTConnector.h"
 
-static NSString *const YTOptionsKeyMine = @"mine";
-static NSString *const YTOptionsKeyPart = @"part";
-static NSString *const YTOptionsKeyMaxResults = @"maxResults";
-static NSString *const YTOptionsKeyplaylistId = @"playlistId";
+static NSString * const YTOptionsKeyMine       = @"mine";
+static NSString * const YTOptionsKeyPart       = @"part";
+static NSString * const YTOptionsKeyMaxResults = @"maxResults";
+static NSString * const YTOptionsKeyPlaylistId = @"playlistId";
+static NSString * const YTOptionsKeyId         = @"id";
 
 static NSUInteger const YTOptionsValueMaxResults = 50;
 
@@ -21,16 +22,16 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 
 #pragma mark - Private methods
 
-+ (NSString *)textOfPlaylistPart:(YTRequestPlaylistPart)part {
++ (NSString *)textOfPartForPlaylistsList:(YTRequestPlaylistsList)part {
     NSString *partText;
     switch (part) {
-        case YOUTUBE_REQUEST_PLAYLIST_PART_ID:
+        case YT_REQUEST_PLAYLISTS_LIST_ID:
             partText = @"id";
             break;
-        case YOUTUBE_REQUEST_PLAYLIST_PART_SNIPPET:
+        case YT_REQUEST_PLAYLISTS_LIST_SNIPPET:
             partText = @"snippet";
             break;
-        case YOUTUBE_REQUEST_PLAYLIST_PART_STATUS:
+        case YT_REQUEST_PLAYLISTS_LIST_STATUS:
             partText = @"status";
             break;
             
@@ -40,31 +41,31 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     
     return partText;
 }
-+ (NSString *)textOfChannelPart:(YTRequestChannelPart)part {
++ (NSString *)textOfPartForChannelsList:(YTRequestChannelsList)part {
     NSString *partText;
     switch (part) {
-        case YOUTUBE_REQUEST_CHANNEL_PART_ID:
+        case YT_REQUEST_CHANNELS_LIST_ID:
             partText = @"id";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_SNIPPET:
+        case YT_REQUEST_CHANNELS_LIST_SNIPPET:
             partText = @"snippet";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_AUDIT_DETAILS:
+        case YT_REQUEST_CHANNELS_LIST_AUDIT_DETAILS:
             partText = @"auditDetails";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_BRANDING_SETTINGS:
+        case YT_REQUEST_CHANNELS_LIST_BRANDING_SETTINGS:
             partText = @"brandingSettings";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_CONTENT_DETAILS:
+        case YT_REQUEST_CHANNELS_LIST_CONTENT_DETAILS:
             partText = @"contentDetails";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_INVIDEO_PROMOTION:
+        case YT_REQUEST_CHANNELS_LIST_INVIDEO_PROMOTION:
             partText = @"invideoPromotion";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_STATISTICS:
+        case YT_REQUEST_CHANNELS_LIST_STATISTICS:
             partText = @"statistics";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_TOPIC_DETAILS:
+        case YT_REQUEST_CHANNELS_LIST_TOPIC_DETAILS:
             partText = @"topicDetails";
             break;
             
@@ -74,20 +75,66 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     
     return partText;
 }
-+ (NSString *)textOfPlaylistItemsPart:(YTRequestPlaylistItemsPart)part {
++ (NSString *)textOfPartForPlaylistItemsList:(YTRequestPlaylistItemsList)part {
     NSString *partText;
     switch (part) {
-        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_ID:
+        case YT_REQUEST_PLAYLIST_ITEMS_LIST_ID:
             partText = @"id";
             break;
-        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_SNIPPET:
+        case YT_REQUEST_PLAYLIST_ITEMS_LIST_SNIPPET:
             partText = @"snippet";
             break;
-        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_CONTENT_DETAILS:
+        case YT_REQUEST_PLAYLIST_ITEMS_LIST_CONTENT_DETAILS:
+            partText = @"contentDetails";
+            break;
+        case YT_REQUEST_PLAYLIST_ITEMS_LIST_STATUS:
             partText = @"status";
             break;
-        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_STATUS:
+            
+        default:
+            break;
+    }
+    
+    return partText;
+}
++ (NSString *)textOfPartForVideosList:(YTRequestVideosList)part {
+    NSString *partText;
+    switch (part) {
+        case YT_REQUEST_VIDEOS_LIST_ID:
+            partText = @"id";
+            break;
+        case YT_REQUEST_VIDEOS_LIST_SNIPPET:
             partText = @"snippet";
+            break;
+        case YT_REQUEST_VIDEOS_LIST_CONTENT_DETAILS:
+            partText = @"contentDetails";
+            break;
+        case YT_REQUEST_VIDEOS_LIST_FILE_DETAILS:
+            partText = @"fileDetails";
+            break;
+        case YT_REQUEST_VIDEOS_LIST_LIVE_STREAMING_DETAILS:
+            partText = @"liveStreamingDetails";
+            break;
+        case YT_REQUEST_VIDEOS_LIST_PLAYER:
+            partText = @"player";
+            break;
+        case YT_REQUEST_VIDEOS_LIST_PROCESSING_DETAILS:
+            partText = @"processingDetails";
+            break;
+        case YT_REQUEST_VIDEOS_LIST_RECORDING_DETAILS:
+            partText = @"recordingDetails";
+            break;
+        case YT_REQUEST_VIDEOS_LIST_STATISTICS:
+            partText = @"statistics";
+            break;
+        case YT_REQUEST_VIDEOS_LIST_STATUS:
+            partText = @"status";
+            break;
+        case YT_REQUEST_VIDEOS_LIST_SUGGESTIONS:
+            partText = @"suggestions";
+            break;
+        case YT_REQUEST_VIDEOS_LIST_TOPIC_DETAILS:
+            partText = @"topicDetails";
             break;
             
         default:
@@ -106,12 +153,13 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     NSString *optionsList = [YTCommon makeOptionsListFromOptions:options];
     NSString *url = [NSString stringWithFormat:@"%@?%@", template, optionsList];
     
-    NSString *accessToken = YTConnector.sharedInstance.accessToken;
+    NSString *accessToken = [YTConnector sharedInstance].accessToken;
     NSString *urlWithToken = [url stringByAppendingString:[NSString stringWithFormat:@"&access_token=%@", accessToken]];
     
     return urlWithToken;
 }
-+ (NSDictionary *)fetchPlaylistsWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
+
++ (NSDictionary *)fetchPlaylistsListWithOptions:(NSDictionary *)options error:(NSError **)error {
     NSDictionary *resultOptions;
     if ([options objectForKey:YTOptionsKeyMine]) {
         resultOptions = options;
@@ -122,28 +170,17 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
         resultOptions = mutableOptions;
     }
     
-    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListPlaylistsURL withOptions:resultOptions];
+    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIPlaylistsListURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
-                                                                withUrlString:urlWithToken
-                                                               withParameters:nil
-                                                                   responseIs:&response
-                                                                      errorIs:error];
-    
-    return jsonAnswer;
-}
-+ (NSDictionary *)fetchPlaylistItemsWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
-    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListPlaylistItemsURL withOptions:options];
-    NSHTTPURLResponse *response;
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
                                                       withUrlString:urlWithToken
                                                      withParameters:nil
-                                                         responseIs:&response
-                                                            errorIs:error];
+                                                           response:&response
+                                                              error:error];
     
     return jsonAnswer;
 }
-+ (NSDictionary *)fetchChannelsWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
++ (NSDictionary *)fetchChannelsListWithOptions:(NSDictionary *)options error:(NSError **)error {
     NSDictionary *resultOptions;
     if ([options objectForKey:YTOptionsKeyMine]) {
         resultOptions = options;
@@ -154,32 +191,64 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
         resultOptions = mutableOptions;
     }
     
-    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListChannelsURL withOptions:resultOptions];
+    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIChannelsListURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
-                                                                withUrlString:urlWithToken
-                                                               withParameters:nil
-                                                                   responseIs:&response
-                                                                      errorIs:error];
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
+                                                      withUrlString:urlWithToken
+                                                     withParameters:nil
+                                                           response:&response
+                                                              error:error];
+    
+    return jsonAnswer;
+}
++ (NSDictionary *)fetchPlaylistItemsListWithOptions:(NSDictionary *)options error:(NSError **)error {
+    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIPlaylistItemsListURL withOptions:options];
+    NSHTTPURLResponse *response;
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
+                                                      withUrlString:urlWithToken
+                                                     withParameters:nil
+                                                           response:&response
+                                                              error:error];
+    
+    return jsonAnswer;
+}
++ (NSDictionary *)fetchVideosListWithOptions:(NSDictionary *)options error:(NSError **)error {
+    NSDictionary *resultOptions;
+    if ([options objectForKey:YTOptionsKeyMine]) {
+        resultOptions = options;
+    } else {
+        NSMutableDictionary *mutableOptions = [options mutableCopy];
+        [mutableOptions addEntriesFromDictionary:@{YTOptionsKeyMine : @"true"}];
+        
+        resultOptions = mutableOptions;
+    }
+    
+    NSString *urlWithToken = [self makeUrlForTemplate:YTAPIVideosListURL withOptions:resultOptions];
+    NSHTTPURLResponse *response;
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
+                                                      withUrlString:urlWithToken
+                                                     withParameters:nil
+                                                           response:&response
+                                                              error:error];
     
     return jsonAnswer;
 }
 
 #pragma mark - Public interface
 
-+ (void)getUserInfoCompletion:(void(^)(NSDictionary *, NSError *))completion {
-    NSString *accessToken = YTConnector.sharedInstance.accessToken;
++ (void)fetchUserInfoCompletion:(void(^)(NSDictionary *, NSError *))completion {
+    NSString *accessToken = [YTConnector sharedInstance].accessToken;
     NSString *urlString = [NSString stringWithFormat:@"%@&access_token=%@",
                            YTGoogleUserInfoURL, accessToken];
-    dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueGetUserInfo UTF8String], NULL);
-    dispatch_async(connectQueue, ^{
+    dispatch_queue_t fetchQueue = dispatch_queue_create([YTQueueGetUserInfo UTF8String], NULL);
+    dispatch_async(fetchQueue, ^{
         NSHTTPURLResponse *response;
-        NSError *error = nil;
-        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+        NSError *error;
+        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_GET
                                                           withUrlString:urlString
                                                          withParameters:nil
-                                                             responseIs:&response
-                                                                errorIs:&error];
+                                                               response:&response
+                                                                  error:&error];
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(jsonAnswer, error);
         });
@@ -187,96 +256,117 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 }
 
 + (void)fetchPlaylistsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
-    dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueFetchPlaylists UTF8String], NULL);
-    dispatch_async(connectQueue, ^{
-        NSError *error = nil;
-        NSDictionary *jsonAnswer = [self fetchPlaylistsWithOptions:options errorIs:&error];
+    dispatch_queue_t fetchQueue = dispatch_queue_create([YTQueueFetchPlaylistsList UTF8String], NULL);
+    dispatch_async(fetchQueue, ^{
+        NSError *error;
+        NSDictionary *jsonAnswer = [self fetchPlaylistsListWithOptions:options error:&error];
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(jsonAnswer, error);
         });
     });
 }
-+ (void)fetchMinePlaylistsJsonWithPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchMinePlaylistsJsonWithPart:(YTRequestPlaylistsList)part completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
-    NSString *partText = [self textOfPlaylistPart:part];
+    NSString *partText = [self textOfPartForPlaylistsList:part];
     [self addPartText:partText toOptionsList:options];
     
     [self fetchPlaylistsJsonWithOptions:options completion:completion];
 }
-+ (void)fetchMinePlaylistsJsonNumber:(NSUInteger)number withPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchMinePlaylistsJsonNumber:(NSUInteger)number withPart:(YTRequestPlaylistsList)part completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
     [options setObject:[NSNumber numberWithInteger:number] forKey:YTOptionsKeyMaxResults];
-
-    NSString *partText = [self textOfPlaylistPart:part];
+    
+    NSString *partText = [self textOfPartForPlaylistsList:part];
     [self addPartText:partText toOptionsList:options];
     
     [self fetchPlaylistsJsonWithOptions:options completion:completion];
 }
-+ (void)fetchMaxMinePlaylistsJsonWithPart:(YTRequestPlaylistPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchMaxMinePlaylistsJsonWithPart:(YTRequestPlaylistsList)part completion:(void (^)(NSDictionary *, NSError *))completion {
     [self fetchMinePlaylistsJsonNumber:YTOptionsValueMaxResults withPart:part completion:completion];
 }
 
 + (void)fetchChannelsJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
-    dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueFetchChannels UTF8String], NULL);
-    dispatch_async(connectQueue, ^{
-        NSError *error = nil;
-        NSDictionary *jsonAnswer = [self fetchChannelsWithOptions:options errorIs:&error];
+    dispatch_queue_t fetchQueue = dispatch_queue_create([YTQueueFetchChannelsList UTF8String], NULL);
+    dispatch_async(fetchQueue, ^{
+        NSError *error;
+        NSDictionary *jsonAnswer = [self fetchChannelsListWithOptions:options error:&error];
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(jsonAnswer, error);
         });
     });
 }
-+ (void)fetchMineChannelsJsonWithPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchMineChannelsJsonWithPart:(YTRequestChannelsList)part completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
-    NSString *partText = [self textOfChannelPart:part];
+    NSString *partText = [self textOfPartForChannelsList:part];
     [self addPartText:partText toOptionsList:options];
     
     [self fetchChannelsJsonWithOptions:options completion:completion];
 }
-+ (void)fetchMineChannelsJsonNumber:(NSUInteger)number withPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchMineChannelsJsonNumber:(NSUInteger)number withPart:(YTRequestChannelsList)part completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
     [options setObject:[NSNumber numberWithInteger:number] forKey:YTOptionsKeyMaxResults];
-
-    NSString *partText = [self textOfChannelPart:part];
+    
+    NSString *partText = [self textOfPartForChannelsList:part];
     [self addPartText:partText toOptionsList:options];
     
     [self fetchChannelsJsonWithOptions:options completion:completion];
 }
-+ (void)fetchMaxMineChannelsJsonWithPart:(YTRequestChannelPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchMaxMineChannelsJsonWithPart:(YTRequestChannelsList)part completion:(void (^)(NSDictionary *, NSError *))completion {
     [self fetchMineChannelsJsonNumber:YTOptionsValueMaxResults withPart:part completion:completion];
 }
 
 + (void)fetchItemsOfPlaylistJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
-    dispatch_queue_t connectQueue = dispatch_queue_create([YTQueueFetchPlaylistItem UTF8String], NULL);
-    dispatch_async(connectQueue, ^{
-        NSError *error = nil;
-        NSDictionary *jsonAnswer = [self fetchPlaylistItemsWithOptions:options errorIs:&error];
+    dispatch_queue_t fetchQueue = dispatch_queue_create([YTQueueFetchPlaylistItemsList UTF8String], NULL);
+    dispatch_async(fetchQueue, ^{
+        NSError *error;
+        NSDictionary *jsonAnswer = [self fetchPlaylistItemsListWithOptions:options error:&error];
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(jsonAnswer, error);
         });
     });
 }
-+ (void)fetchItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsList)part completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
-    [options setObject:playlistId forKey:YTOptionsKeyplaylistId];
-
-    NSString *partText = [self textOfPlaylistItemsPart:part];
+    [options setObject:playlistId forKey:YTOptionsKeyPlaylistId];
+    
+    NSString *partText = [self textOfPartForPlaylistItemsList:part];
     [self addPartText:partText toOptionsList:options];
     
     [self fetchItemsOfPlaylistJsonWithOptions:options completion:completion];
 }
-+ (void)fetchItemsNumber:(NSUInteger)number ofPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchItemsNumber:(NSUInteger)number ofPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsList)part completion:(void (^)(NSDictionary *, NSError *))completion {
     NSMutableDictionary *options = [NSMutableDictionary dictionary];
-    [options setObject:playlistId forKey:YTOptionsKeyplaylistId];
+    [options setObject:playlistId forKey:YTOptionsKeyPlaylistId];
     [options setObject:[NSNumber numberWithInteger:number] forKey:YTOptionsKeyMaxResults];
-
-    NSString *partText = [self textOfPlaylistItemsPart:part];
+    
+    NSString *partText = [self textOfPartForPlaylistItemsList:part];
     [self addPartText:partText toOptionsList:options];
     
     [self fetchItemsOfPlaylistJsonWithOptions:options completion:completion];
 }
-+ (void)fetchMaxItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsPart)part completion:(void (^)(NSDictionary *, NSError *))completion {
++ (void)fetchMaxItemsOfPlaylist:(NSString *)playlistId withPart:(YTRequestPlaylistItemsList)part completion:(void (^)(NSDictionary *, NSError *))completion {
     [self fetchItemsNumber:YTOptionsValueMaxResults ofPlaylist:playlistId withPart:part completion:completion];
+}
+
++ (void)fetchVideosListJsonWithOptions:(NSDictionary *)options completion:(void (^)(NSDictionary *, NSError *))completion {
+    dispatch_queue_t fetchQueue = dispatch_queue_create([YTQueueFetchVideosList UTF8String], NULL);
+    dispatch_async(fetchQueue, ^{
+        NSError *error;
+        NSDictionary *jsonAnswer = [self fetchVideosListWithOptions:options error:&error];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completion(jsonAnswer, error);
+        });
+    });
+}
++ (void)fetchVideosListContentDetailForArrayOfVideoIds:(NSArray *)arrayOfIds completion:(void (^)(NSDictionary *, NSError *))completion {
+    NSMutableDictionary *options = [NSMutableDictionary dictionary];
+    NSString *listOfVideosId = [arrayOfIds componentsJoinedByString:@","];
+    [options setObject:listOfVideosId forKey:YTOptionsKeyId];
+    
+    NSString *partText = [self textOfPartForVideosList:YT_REQUEST_VIDEOS_LIST_CONTENT_DETAILS];
+    [self addPartText:partText toOptionsList:options];
+    
+    [self fetchVideosListJsonWithOptions:options completion:completion];
 }
 
 @end
