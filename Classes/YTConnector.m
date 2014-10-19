@@ -51,7 +51,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 #pragma mark - Private methods - Others
 
 - (void)networkActivityIndicatorIsVisible:(BOOL)isVisible {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:isVisible];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = isVisible;
 }
 - (void)scaleLoadedPageToWidth {
     // Fix Google's storm in the minds
@@ -93,7 +93,7 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
     [loginController.webView loadRequest:[self makeLoginURLRequest]];
 }
 - (NSString *)distinguishAuthCodeFromQuery:(NSString *)query {
-    NSString *authCode = nil;
+    NSString *authCode;
     
     NSArray *queryParts = [query componentsSeparatedByString:@"="];
     if ( (queryParts.count == 2) && ([[queryParts objectAtIndex:0] isEqualToString:@"code"]) ) {
@@ -133,12 +133,11 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 	NSHTTPURLResponse *response;
     NSError *error = nil;
     
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:AKRestMethodPost
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_POST
                                                       withUrlString:YTGoogleTokenURL
                                                      withParameters:queryData
-                                                         responseIs:&response
-                                                            errorIs:&error];
-    
+                                                           response:&response
+                                                              error:&error];
     if (!error) {
         if ( YTHttpResponseStatusOK == response.statusCode ) {
             self.expiresIn    = jsonAnswer[@"expires_in"];
@@ -162,12 +161,11 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
         NSHTTPURLResponse *response;
         NSError *error = nil;
         
-        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:AKRestMethodPost
+        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:YT_REST_METHOD_POST
                                                           withUrlString:YTGoogleTokenURL
                                                          withParameters:queryData
-                                                             responseIs:&response
-                                                                errorIs:&error];
-        
+                                                               response:&response
+                                                                  error:&error];
         if (!error) {
             if ( YTHttpResponseStatusOK == response.statusCode ) {
                 self.expiresIn   = jsonAnswer[@"expires_in"];
@@ -183,13 +181,14 @@ void(^connectCompletionBlock)(YTConnector *selfWeak, NSError *error) = ^void(YTC
 #pragma mark - Public interface
 
 + (instancetype)sharedInstance {
-    static dispatch_once_t once;
-    static id _sharedInstance = nil;
-    dispatch_once(&once, ^{
-        _sharedInstance = [[self alloc] init];
+    static id sharedInstance = nil;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] init];
     });
     
-    return _sharedInstance;
+    return sharedInstance;
 }
 - (void)connectWithClientId:(NSString *)clientId andClientSecret:(NSString *)clientSecret {
     self.clientId     = clientId;
