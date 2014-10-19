@@ -24,13 +24,13 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 + (NSString *)textOfPlaylistPart:(YTRequestPlaylistPart)part {
     NSString *partText;
     switch (part) {
-        case YOUTUBE_REQUEST_PLAYLIST_PART_ID:
+        case AKYouTubeRequestPlaylistPartId:
             partText = @"id";
             break;
-        case YOUTUBE_REQUEST_PLAYLIST_PART_SNIPPET:
+        case AKYouTubeRequestPlaylistPartSnippet:
             partText = @"snippet";
             break;
-        case YOUTUBE_REQUEST_PLAYLIST_PART_STATUS:
+        case AKYouTubeRequestPlaylistPartStatus:
             partText = @"status";
             break;
             
@@ -43,28 +43,28 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 + (NSString *)textOfChannelPart:(YTRequestChannelPart)part {
     NSString *partText;
     switch (part) {
-        case YOUTUBE_REQUEST_CHANNEL_PART_ID:
+        case AKYouTubeRequestChannelPartId:
             partText = @"id";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_SNIPPET:
+        case AKYouTubeRequestChannelPartSnippet:
             partText = @"snippet";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_AUDIT_DETAILS:
+        case AKYouTubeRequestChannelPartAuditDetails:
             partText = @"auditDetails";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_BRANDING_SETTINGS:
+        case AKYouTubeRequestChannelPartBrandingSetings:
             partText = @"brandingSettings";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_CONTENT_DETAILS:
+        case AKYouTubeRequestChannelPartContentDetails:
             partText = @"contentDetails";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_INVIDEO_PROMOTION:
+        case AKYouTubeRequestChannelPartInvideoPromotion:
             partText = @"invideoPromotion";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_STATISTICS:
+        case AKYouTubeRequestChannelPartStatistics:
             partText = @"statistics";
             break;
-        case YOUTUBE_REQUEST_CHANNEL_PART_TOPIC_DETAILS:
+        case AKYouTubeRequestChannelPartTopicDetails:
             partText = @"topicDetails";
             break;
             
@@ -77,16 +77,16 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 + (NSString *)textOfPlaylistItemsPart:(YTRequestPlaylistItemsPart)part {
     NSString *partText;
     switch (part) {
-        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_ID:
+        case AKYouTubeRequestPlaylistItemsPartId:
             partText = @"id";
             break;
-        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_SNIPPET:
+        case AKYouTubeRequestPlaylistItemsPartSnippet:
             partText = @"snippet";
             break;
-        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_CONTENT_DETAILS:
+        case AKYouTubeRequestPlaylistItemsPartContentDetails:
             partText = @"status";
             break;
-        case YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_STATUS:
+        case AKYouTubeRequestPlaylistItemsPartStatus:
             partText = @"snippet";
             break;
             
@@ -124,7 +124,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     
     NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListPlaylistsURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:AKRestMethodGet
                                                                 withUrlString:urlWithToken
                                                                withParameters:nil
                                                                    responseIs:&response
@@ -135,7 +135,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
 + (NSDictionary *)fetchPlaylistItemsWithOptions:(NSDictionary *)options errorIs:(NSError **)error {
     NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListPlaylistItemsURL withOptions:options];
     NSHTTPURLResponse *response;
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:AKRestMethodGet
                                                       withUrlString:urlWithToken
                                                      withParameters:nil
                                                          responseIs:&response
@@ -156,7 +156,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     
     NSString *urlWithToken = [self makeUrlForTemplate:YTAPIListChannelsURL withOptions:resultOptions];
     NSHTTPURLResponse *response;
-    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+    NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:AKRestMethodGet
                                                                 withUrlString:urlWithToken
                                                                withParameters:nil
                                                                    responseIs:&response
@@ -175,7 +175,7 @@ static NSUInteger const YTOptionsValueMaxResults = 50;
     dispatch_async(connectQueue, ^{
         NSHTTPURLResponse *response;
         NSError *error = nil;
-        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:REST_METHOD_GET
+        NSDictionary *jsonAnswer = [YTCommon jsonAnswerForRequestMethod:AKRestMethodGet
                                                           withUrlString:urlString
                                                          withParameters:nil
                                                              responseIs:&response

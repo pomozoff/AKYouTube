@@ -32,7 +32,7 @@
 - (void)refreshTable {
     if (self.isConnected) {
         // TODO: fetch playlists
-        [YTFetcher fetchMinePlaylistsJsonWithPart:REQUEST_PLAYLIST_PART_SNIPPET completion:^(NSDictionary *playlistsJson, NSError *error) {
+        [YTFetcher fetchMinePlaylistsJsonWithPart:AKYouTubeRequestPlaylistPartSnippet completion:^(NSDictionary *playlistsJson, NSError *error) {
             AKResponseYouTubeObject *response = [EKMapper objectFromExternalRepresentation:playlistsJson
                                                                                withMapping:[AKYoutubeObjectsMapper responsePlaylistMapping]];
 

@@ -42,10 +42,10 @@ static NSInteger const YTMaxItemsFetch = 50;
 static NSUInteger const YTWebViewHorizontalMargin = 30;
 static NSUInteger const YTWebViewVerticalMargin   = 44;
 
-typedef enum {
-    REST_METHOD_POST,
-    REST_METHOD_GET
-} RestMethod;
+typedef NS_ENUM(NSInteger, RestMethod) {
+    AKRestMethodPost,
+    AKRestMethodGet
+};
 
 @interface YTCommon : NSObject
 

@@ -8,29 +8,29 @@
 
 @import Foundation;
 
-typedef enum {
-    YOUTUBE_REQUEST_PLAYLIST_PART_ID,
-    YOUTUBE_REQUEST_PLAYLIST_PART_SNIPPET,
-    YOUTUBE_REQUEST_PLAYLIST_PART_STATUS
-} YTRequestPlaylistPart;
+typedef NS_ENUM(NSInteger, YTRequestPlaylistPart) {
+    AKYouTubeRequestPlaylistPartId,
+    AKYouTubeRequestPlaylistPartSnippet,
+    AKYouTubeRequestPlaylistPartStatus
+};
 
-typedef enum {
-    YOUTUBE_REQUEST_CHANNEL_PART_ID,
-    YOUTUBE_REQUEST_CHANNEL_PART_SNIPPET,
-    YOUTUBE_REQUEST_CHANNEL_PART_AUDIT_DETAILS,
-    YOUTUBE_REQUEST_CHANNEL_PART_BRANDING_SETTINGS,
-    YOUTUBE_REQUEST_CHANNEL_PART_CONTENT_DETAILS,
-    YOUTUBE_REQUEST_CHANNEL_PART_INVIDEO_PROMOTION,
-    YOUTUBE_REQUEST_CHANNEL_PART_STATISTICS,
-    YOUTUBE_REQUEST_CHANNEL_PART_TOPIC_DETAILS
-} YTRequestChannelPart;
+typedef NS_ENUM(NSInteger, YTRequestChannelPart) {
+    AKYouTubeRequestChannelPartId,
+    AKYouTubeRequestChannelPartSnippet,
+    AKYouTubeRequestChannelPartAuditDetails,
+    AKYouTubeRequestChannelPartBrandingSetings,
+    AKYouTubeRequestChannelPartContentDetails,
+    AKYouTubeRequestChannelPartInvideoPromotion,
+    AKYouTubeRequestChannelPartStatistics,
+    AKYouTubeRequestChannelPartTopicDetails
+};
 
-typedef enum {
-    YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_ID,
-    YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_SNIPPET,
-    YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_CONTENT_DETAILS,
-    YOUTUBE_REQUEST_PLAYLIST_ITEMS_PART_STATUS
-} YTRequestPlaylistItemsPart;
+typedef NS_ENUM(NSInteger, YTRequestPlaylistItemsPart) {
+    AKYouTubeRequestPlaylistItemsPartId,
+    AKYouTubeRequestPlaylistItemsPartSnippet,
+    AKYouTubeRequestPlaylistItemsPartContentDetails,
+    AKYouTubeRequestPlaylistItemsPartStatus
+};
 
 @interface YTFetcher : NSObject
 

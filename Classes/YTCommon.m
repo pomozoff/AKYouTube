@@ -27,10 +27,10 @@
                                      errorIs:(NSError **)error {
     NSString *methodString;
     switch (method) {
-        case REST_METHOD_GET:
+        case AKRestMethodGet:
             methodString = @"GET";
             break;
-        case REST_METHOD_POST:
+        case AKRestMethodPost:
             methodString = @"POST";
             break;
             
